@@ -1,12 +1,13 @@
-import java.util.InputMismatchException;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class LibraryBookManager {
     public static void main(String[] args) {
-        Object[][] libros = new Object[100][4];
-        iniciarlizarMenu(libros);
+        Object[][] libros =new Object[100][4];
+        mostrarMenu();
+        inicializarMenu(libros);
     }
-
     public static void iniciarlizarMenu(Object[][] libros){
         boolean continuar = true;
         while (continuar){
@@ -76,5 +77,102 @@ public class LibraryBookManager {
                 System.out.println((int) libros[i][3]);
             }
         }
+    }
+    //Metodo que imprime el menú en la consola
+    public static void mostrarMenu() {
+        System.out.println("\n---Library Book Manager---");
+        System.out.println("1. Agregar Libro");
+        System.out.println("2. Eliminar Libro");
+        System.out.println("3. Buscar Libro");
+        System.out.println("4. Listar Libros");
+        System.out.println("5. Salir");
+        System.out.print("Seleccione una opción: ");
+    }
+
+    //Le pedirá al usuario que ingrese los datos y llamará a la funcion agregarLibro() para guardarlo en la matriz
+    public static void agregarLibroMenu(Object[][] biblioteca){
+        String ISBN = leerCadena("Ingrese el ISBN del libro: ");
+        String titulo = leerCadena("Ingrese el título del libro:");
+        String autor = leerCadena("Ingrese el autor del libro:");
+        int stock = leerStock("Ingrese el stock del libro:");
+        agregarLibro(biblioteca, ISBN, titulo, autor, stock);
+        System.out.println("Libro ingresado con exito.");
+    }
+
+    //Funcion para agregar el libro a la matriz, si el ISBN ya existe dentro de la matriz, se agregará el stock ingresado al que estaba guardado.
+    public static Object[][] agregarLibro(Object[][] biblioteca, String ISBN, String titulo, String autor, int stock) {
+        boolean libroEncontrado = false;
+        for (int i = 0; i < biblioteca.length; i++) {
+            if (biblioteca[i][0] != null &&  biblioteca[i][0] == ISBN) {
+                biblioteca[i][3] = (int) biblioteca[i][3] + stock;
+                libroEncontrado = true;
+                break;
+            }
+        }
+        if (!libroEncontrado) {
+            for (int i = 0; i < biblioteca.length; i++) {
+                if (biblioteca[i][0] == null) {
+                    biblioteca[i][0] = ISBN;
+                    biblioteca[i][1] = titulo;
+                    biblioteca[i][2] = autor;
+                    biblioteca[i][3] = stock;
+                    break;
+                }
+            }
+        }
+
+        return biblioteca;
+    }
+
+    public static String leerCadena(String mensaje) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(mensaje);
+        return scanner.nextLine();
+    }
+    //Se asegura de que el valor ingresado cuando se pide el stock sea un numero entero, y no uno negativo, una letra o caracter no numerico.
+    public static int leerStock(String mensaje) {
+        Scanner scanner = new Scanner(System.in);
+        int valor = -1;
+        boolean valido = false;
+
+        while (!valido) {
+            try {
+                System.out.print(mensaje);
+                valor = Integer.parseInt(scanner.nextLine());
+                if (valor < 0) {
+                    System.out.println("Error: Debe ingresar un valor válido. Inténtelo de nuevo.");
+                } else {
+                    valido = true;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Debe ingresar un valor válido. Inténtelo de nuevo.");
+            }
+        }
+        return valor;
+    }
+    // funcion que sera llamada por el menu principal para ejecutar la funcion eliminar libro
+    public static void menuEliminarLibro(Object[][] libros){
+        String ISBN = leerCadena("Ingrese el ISBN del libro a eliminar: ");
+        eliminarLibro(libros, ISBN);
+    }
+    //Funcion para eliminar el libro
+    public static Object[][] eliminarLibro(Object[][] libros, String ISBN){
+        Object[] libro = buscarLibro(libros, ISBN);
+        if(libro != null){
+            Arrays.fill(libro, null); // si el libro es encontrado se llena de null ese espacio de la matriz
+            System.out.println("Libro eliminado");
+        }
+        else{
+            System.out.println("Libro no encontrado");
+        }
+        return libros;
+    }
+    public static Object[] buscarLibro(Object[][] libros, String ISBN){
+        for (Object[] libro : libros){ // separo la matriz en arreglos de objetos
+            if (libro[0] == ISBN){ // y compruebo si el ISBN coincide
+                return libro;
+            }
+        }
+        return null;
     }
 }
