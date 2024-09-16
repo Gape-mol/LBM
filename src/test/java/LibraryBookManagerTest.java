@@ -66,5 +66,14 @@ class LibraryBookManagerTest {
         assertFalse(LibraryBookManager.accionesMenu(libros,5));
         assertTrue(LibraryBookManager.accionesMenu(libros, 1000));
     }
-
+    //Lucas
+    /*
+    @Test(expected = NullPointerException.class)
+    public void testBuscarLibroPorTítuloYCódigo_nullTitulo() {
+        buscarLibroPorTítuloYCódigo(null, "ISBN-1234");
+    }
+    @Test(expected = NullPointerException.class)
+    public void testBuscarLibroPorTítuloYCódigo_nullCodigo() {
+        buscarLibroPorTítuloYCódigo("Título de prueba", null);
+    }*/
 }

@@ -167,4 +167,32 @@ public class LibraryBookManager {
         }
         return null;
     }
+
+    //Lucas Hay problemas con este codigo, pero lo dejare para revision
+    /*
+    public Libro buscarLibroPorTítuloYCódigo(String título, String código) {
+        for (Object[] libroArray : libros) {
+            if (libroArray[0] instanceof Libro) {
+                Libro libro = (Libro) libroArray[0];
+                if (libro.getTítulo().equals(título) && libro.getCódigo().equals(código)) {
+                    return libro;
+                }
+            }
+        }
+        return null; // Libro no encontrado
+    }
+
+    public void buscarLibroPorConsola() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el título del libro:");
+        String título = scanner.nextLine();
+        System.out.println("Ingrese el ISBN del libro:");
+        String código = scanner.nextLine();
+        Libro libroEncontrado = buscarLibroPorTítuloYCódigo(título, código);
+        if (libroEncontrado != null) {
+            System.out.println("Libro encontrado: " + libroEncontrado.getTítulo() + " de " + libroEncontrado.getAutor() + ", copias disponibles: " + libroEncontrado.getStock());
+        } else {
+            System.out.println("Libro no encontrado");
+        }
+    }*/
 }
