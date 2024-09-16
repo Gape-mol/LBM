@@ -8,10 +8,10 @@ public class LibraryBookManager {
         mostrarMenu();
         inicializarMenu(libros);
     }
-    public static void iniciarlizarMenu(Object[][] libros){
+    public static void inicializarMenu(Object[][] libros){
         boolean continuar = true;
         while (continuar){
-            //mostrarMenu();
+            mostrarMenu();
             continuar = accionesMenu(libros, seleccionUsuario());
         }
     }
@@ -19,36 +19,28 @@ public class LibraryBookManager {
     public static boolean accionesMenu(Object[][] libros, int seleccionUsuario){
         switch (seleccionUsuario){
             case 1:
-                //agregarLibroMenu();
+                agregarLibroMenu(libros);
                 return true;
-
             case 2:
-                //menuEliminarLibro();
+                menuEliminarLibro(libros);
                 return true;
-
             case 3:
                 //Funcion en la opcion 3
                 return true;
-
             case 4:
                 listarLibros(libros);
                 return true;
-
             case 5:
                 return false;
-
             default:
                 return true;
         }
     }
 
-
-
     //La funcion verifica que la seleccion del usuario es correcta y no ingresa error
     public static int seleccionUsuario(){
         try{
-            int seleccion = obtenerEntero();
-            return seleccion;
+            return obtenerEntero();
         } catch (InputMismatchException e){
             System.out.println("¡Opcion invalida!");
             return 0;
@@ -66,15 +58,15 @@ public class LibraryBookManager {
     //Funcion para listar los libros, lista las fila no nulas de la matriz de libros
     public static void listarLibros(Object[][] libros){
         System.out.println("   ISBN   |   Titulo   |   Autor   |   Stock   ");
-        for (int i = 0; i < libros.length; i++){
-            if (libros[i][0] != null){
-                System.out.print((String) libros[i][0]);
+        for (Object[] libro : libros) {
+            if (libro[0] != null) {
+                System.out.print((String) libro[0]);
                 System.out.print(" | ");
-                System.out.print((String) libros[i][1]);
+                System.out.print((String) libro[1]);
                 System.out.print(" | ");
-                System.out.print((String) libros[i][2]);
+                System.out.print((String) libro[2]);
                 System.out.print(" | ");
-                System.out.println((int) libros[i][3]);
+                System.out.println((int) libro[3]);
             }
         }
     }
