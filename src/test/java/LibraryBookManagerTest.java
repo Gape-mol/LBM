@@ -58,4 +58,13 @@ class LibraryBookManagerTest {
         assertEquals(biblioteca[1][3], 6);
     }
 
+    @Test
+    void accionesMenuTest(){
+
+        assertTrue(LibraryBookManager.accionesMenu(libros,1));
+        assertTrue(LibraryBookManager.accionesMenu(libros, 2));
+        assertFalse(LibraryBookManager.accionesMenu(libros,5));
+        assertTrue(LibraryBookManager.accionesMenu(libros, 1000));
+    }
+
 }
