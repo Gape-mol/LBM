@@ -5,12 +5,12 @@ import java.util.Objects;
 
 class LibraryBookManagerTest {
     Object[][] libros = new Object[10][5];
-    
+
     @BeforeEach
     void setUp() {
         libros[0][0] = "1234567890";
         libros[0][1] = "Libro de prueba";
-        libros[0][2] = "Autor de prueba"; 
+        libros[0][2] = "Autor de prueba";
         libros[0][3] = 3; //Stock de prueba
     }
     @Test
@@ -22,7 +22,7 @@ class LibraryBookManagerTest {
         assertNull(libros[0][2]);
         assertNull(libros[0][3]);
     }
-    
+
     @Test
     void testEliminarLibroNoEncontrado() {
         LibraryBookManager.eliminarLibro(libros, "1234567891");
@@ -40,20 +40,22 @@ class LibraryBookManagerTest {
         assertEquals("Autor de prueba", libro[2]);
         assertEquals(3, libro[3]);
     }
+    ;
+    @Test
+    void testAgregarLibro() {
+        LibraryBookManager.agregarLibro(biblioteca, "12345", "Papelucho", "Marcela Paz", 3);
+        assertEquals(biblioteca[1][0], "12345");
+        assertEquals(biblioteca[1][1], "Papelucho");
+        assertEquals(biblioteca[1][2], "Marcela Paz");
+        assertEquals(biblioteca[1][3], 3);
+    }
 
     @Test
-    void testBuscarLibroNoEncontrado() {
-        Object[] libro = LibraryBookManager.buscarLibro(libros, "1234567891");
-        assertNull(libro);
+    void testAgregarLibroStock() {
+        LibraryBookManager.agregarLibro(biblioteca, "12345", "Papelucho", "Marcela Paz", 3);
+        LibraryBookManager.agregarLibro(biblioteca, "12345", "Papelucho", "Marcela Paz", 3);
+        assertEquals(biblioteca[1][0], "12345");
+        assertEquals(biblioteca[1][3], 6);
     }
 
-    @AfterEach
-    void imprimirMatriz() {
-        for (Object[] libro : libros) {
-            for (Object o : libro) {
-                System.out.print(o + " ");
-            }
-            System.out.println();
-        }
-    }
 }

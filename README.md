@@ -1,3 +1,13 @@
+# LBM
+
+# Benjamin
+## Aportes
+* Desarrollo metodo agregarLibro
+* Desarrollo metodo agregarLibroMenu
+* Manejo de errores con try-catch en metodo leerStock
+* Metodo mostrarMenu
+* Metodo leerCadena
+
 ### Gustavo
 
 Hice la funcion para borrar el libro, y una funcion para buscar libros mediante el ISBN, ya que asi los ubico para borrarlos.
@@ -8,3 +18,5 @@ Hice la funcion para borrar el libro, y una funcion para buscar libros mediante 
 -   public static Object[] buscarLibro(Object[][] libros, String ISBN){}
 -   public static void menuEliminarLibro(Object[][] libros){}
 ```
+
+
