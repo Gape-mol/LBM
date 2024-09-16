@@ -8,7 +8,7 @@ public class LibraryBookManager {
         mostrarMenu();
     }
 
-
+    //Metodo que imprime el menú en la consola
     public static void mostrarMenu() {
         System.out.println("\n---Library Book Manager---");
         System.out.println("1. Agregar Libro");
@@ -19,7 +19,7 @@ public class LibraryBookManager {
         System.out.print("Seleccione una opción: ");
     }
 
-
+    //Le pedirá al usuario que ingrese los datos y llamará a la funcion agregarLibro() para guardarlo en la matriz
     public static void agregarLibroMenu(Object[][] biblioteca){
         String ISBN = leerCadena("Ingrese el ISBN del libro: ");
         String titulo = leerCadena("Ingrese el título del libro:");
@@ -31,7 +31,7 @@ public class LibraryBookManager {
     }
 
 
-
+    //Funcion para agregar el libro a la matriz, si el ISBN ya existe dentro de la matriz, se agregará el stock ingresado al que estaba guardado.
     public static Object[][] agregarLibro(Object[][] biblioteca, String ISBN, String titulo, String autor, int stock) {
         boolean libroEncontrado = false;
         for (int i = 0; i < biblioteca.length; i++) {
@@ -56,12 +56,13 @@ public class LibraryBookManager {
         return biblioteca;
     }
 
+
     public static String leerCadena(String mensaje) {
         Scanner scanner = new Scanner(System.in);
         System.out.print(mensaje);
         return scanner.nextLine();
     }
-
+    //Se asegura de que el valor ingresado cuando se pide el stock sea un numero entero, y no uno negativo, una letra o caracter no numerico.
     public static int leerStock(String mensaje) {
         Scanner scanner = new Scanner(System.in);
         int valor = -1;
