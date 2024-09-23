@@ -158,18 +158,10 @@ public class LibraryBookManager {
         }
         return libros;
     }
-    public static Object[] buscarLibro(Object[][] libros, String ISBN){
-        for (Object[] libro : libros){ // separo la matriz en arreglos de objetos
-            if (libro[0] == ISBN){ // y compruebo si el ISBN coincide
-                return libro;
-            }
-        }
-        return null;
-    }
 
 public static void menubuscarLibro(Object[][] libros) { //Funcion para buscar libros por ISBN de Lucas
         String ISBN = leerCadena("ingresa el ISBN del libro que quieres buscar: ");
-        Object[] libroEncontrado = buscar_libro(libros, ISBN);
+        Object[] libroEncontrado = buscarLibro(libros, ISBN);
         if (libroEncontrado != null) {
             System.out.println("Libro encontrado!");
             System.out.println("Título: " + libroEncontrado[1]+ " | " +"Autor: " + libroEncontrado[2] +" | " +"Stock: " + libroEncontrado[3] );
@@ -177,7 +169,7 @@ public static void menubuscarLibro(Object[][] libros) { //Funcion para buscar li
             System.out.println("Libro no encontrado revisa el ISBN del libro");
         }
     }
-    public static Object[] buscar_libro(Object[][] libros, String ISBN) {
+    public static Object[] buscarLibro(Object[][] libros, String ISBN) {
         for (Object[] libro : libros) {
             if (libro != null && libro[0] != null && libro[0].equals(ISBN)) {
                 return libro;
