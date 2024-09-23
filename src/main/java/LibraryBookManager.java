@@ -25,7 +25,7 @@ public class LibraryBookManager {
                 menuEliminarLibro(libros);
                 return true;
             case 3:
-                //Funcion en la opcion 3
+                menubuscarLibro(libros)
                 return true;
             case 4:
                 listarLibros(libros);
@@ -168,31 +168,23 @@ public class LibraryBookManager {
         return null;
     }
 
-    //Lucas Hay problemas con este codigo, pero lo dejare para revision
-    /*
-    public Libro buscarLibroPorTítuloYCódigo(String título, String código) {
-        for (Object[] libroArray : libros) {
-            if (libroArray[0] instanceof Libro) {
-                Libro libro = (Libro) libroArray[0];
-                if (libro.getTítulo().equals(título) && libro.getCódigo().equals(código)) {
-                    return libro;
-                }
+public static void menubuscarLibro(Object[][] libros) { //Funcion para buscar libros por ISBN de Lucas
+        String ISBN = leerCadena("ingresa el ISBN del libro que quieres buscar");
+        Object[] libroEncontrado = buscar_libro(libros, ISBN);
+        if (libroEncontrado != null) {
+            System.out.println("Libro encontrado!");
+            System.out.println("Título: " + libroEncontrado[1]+ "Autor: " + libroEncontrado[2] +"Stock: " + libroEncontrado[3] );
+        } else {
+            System.out.println("Libro no encontrado revisa el ISBN del libro");
+        }
+    }
+    public static Object[] buscar_libro(Object[][] libros, String ISBN) {
+        for (Object[] libro : libros) {
+            if (libro != null && libro[0] != null && libro[0].equals(ISBN)) {
+                return libro;
             }
         }
-        return null; // Libro no encontrado
+        return null;
     }
 
-    public void buscarLibroPorConsola() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingrese el título del libro:");
-        String título = scanner.nextLine();
-        System.out.println("Ingrese el ISBN del libro:");
-        String código = scanner.nextLine();
-        Libro libroEncontrado = buscarLibroPorTítuloYCódigo(título, código);
-        if (libroEncontrado != null) {
-            System.out.println("Libro encontrado: " + libroEncontrado.getTítulo() + " de " + libroEncontrado.getAutor() + ", copias disponibles: " + libroEncontrado.getStock());
-        } else {
-            System.out.println("Libro no encontrado");
-        }
-    }*/
 }
