@@ -25,7 +25,7 @@ public class LibraryBookManager {
                 menuEliminarLibro(libros);
                 return true;
             case 3:
-                menubuscarLibro(libros)
+                menubuscarLibro(libros);
                 return true;
             case 4:
                 listarLibros(libros);
