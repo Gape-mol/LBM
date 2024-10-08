@@ -5,13 +5,12 @@ import java.util.InputMismatchException;
 public class LibraryBookManager {
     public static void main(String[] args) {
         Object[][] libros =new Object[100][4];
-        mostrarMenu();
         inicializarMenu(libros);
     }
-    public static void iniciarlizarMenu(Object[][] libros){
+    public static void inicializarMenu(Object[][] libros){
         boolean continuar = true;
         while (continuar){
-            //mostrarMenu();
+            mostrarMenu();
             continuar = accionesMenu(libros, seleccionUsuario());
         }
     }
@@ -19,36 +18,28 @@ public class LibraryBookManager {
     public static boolean accionesMenu(Object[][] libros, int seleccionUsuario){
         switch (seleccionUsuario){
             case 1:
-                //agregarLibroMenu();
+                agregarLibroMenu(libros);
                 return true;
-
             case 2:
-                //menuEliminarLibro();
+                menuEliminarLibro(libros);
                 return true;
-
             case 3:
-                //Funcion en la opcion 3
+                menubuscarLibro(libros);
                 return true;
-
             case 4:
                 listarLibros(libros);
                 return true;
-
             case 5:
                 return false;
-
             default:
                 return true;
         }
     }
 
-
-
     //La funcion verifica que la seleccion del usuario es correcta y no ingresa error
     public static int seleccionUsuario(){
         try{
-            int seleccion = obtenerEntero();
-            return seleccion;
+            return obtenerEntero();
         } catch (InputMismatchException e){
             System.out.println("¡Opcion invalida!");
             return 0;
@@ -66,15 +57,15 @@ public class LibraryBookManager {
     //Funcion para listar los libros, lista las fila no nulas de la matriz de libros
     public static void listarLibros(Object[][] libros){
         System.out.println("   ISBN   |   Titulo   |   Autor   |   Stock   ");
-        for (int i = 0; i < libros.length; i++){
-            if (libros[i][0] != null){
-                System.out.print((String) libros[i][0]);
+        for (Object[] libro : libros) {
+            if (libro[0] != null) {
+                System.out.print((String) libro[0]);
                 System.out.print(" | ");
-                System.out.print((String) libros[i][1]);
+                System.out.print((String) libro[1]);
                 System.out.print(" | ");
-                System.out.print((String) libros[i][2]);
+                System.out.print((String) libro[2]);
                 System.out.print(" | ");
-                System.out.println((int) libros[i][3]);
+                System.out.println((int) libro[3]);
             }
         }
     }
@@ -92,9 +83,9 @@ public class LibraryBookManager {
     //Le pedirá al usuario que ingrese los datos y llamará a la funcion agregarLibro() para guardarlo en la matriz
     public static void agregarLibroMenu(Object[][] biblioteca){
         String ISBN = leerCadena("Ingrese el ISBN del libro: ");
-        String titulo = leerCadena("Ingrese el título del libro:");
-        String autor = leerCadena("Ingrese el autor del libro:");
-        int stock = leerStock("Ingrese el stock del libro:");
+        String titulo = leerCadena("Ingrese el título del libro: ");
+        String autor = leerCadena("Ingrese el autor del libro: ");
+        int stock = leerStock("Ingrese el stock del libro: ");
         agregarLibro(biblioteca, ISBN, titulo, autor, stock);
         System.out.println("Libro ingresado con exito.");
     }
@@ -167,12 +158,24 @@ public class LibraryBookManager {
         }
         return libros;
     }
-    public static Object[] buscarLibro(Object[][] libros, String ISBN){
-        for (Object[] libro : libros){ // separo la matriz en arreglos de objetos
-            if (libro[0] == ISBN){ // y compruebo si el ISBN coincide
+
+public static void menubuscarLibro(Object[][] libros) { //Funcion para buscar libros por ISBN de Lucas
+        String ISBN = leerCadena("ingresa el ISBN del libro que quieres buscar: ");
+        Object[] libroEncontrado = buscarLibro(libros, ISBN);
+        if (libroEncontrado != null) {
+            System.out.println("Libro encontrado!");
+            System.out.println("Título: " + libroEncontrado[1]+ " | " +"Autor: " + libroEncontrado[2] +" | " +"Stock: " + libroEncontrado[3] );
+        } else {
+            System.out.println("Libro no encontrado revisa el ISBN del libro");
+        }
+    }
+    public static Object[] buscarLibro(Object[][] libros, String ISBN) {
+        for (Object[] libro : libros) {
+            if (libro != null && libro[0] != null && libro[0].equals(ISBN)) {
                 return libro;
             }
         }
         return null;
     }
+
 }

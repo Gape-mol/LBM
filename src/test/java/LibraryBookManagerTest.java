@@ -40,22 +40,22 @@ class LibraryBookManagerTest {
         assertEquals("Autor de prueba", libro[2]);
         assertEquals(3, libro[3]);
     }
-    ;
+
     @Test
     void testAgregarLibro() {
-        LibraryBookManager.agregarLibro(biblioteca, "12345", "Papelucho", "Marcela Paz", 3);
-        assertEquals(biblioteca[1][0], "12345");
-        assertEquals(biblioteca[1][1], "Papelucho");
-        assertEquals(biblioteca[1][2], "Marcela Paz");
-        assertEquals(biblioteca[1][3], 3);
+        LibraryBookManager.agregarLibro(libros, "12345", "Papelucho", "Marcela Paz", 3);
+        assertEquals(libros[1][0], "12345");
+        assertEquals(libros[1][1], "Papelucho");
+        assertEquals(libros[1][2], "Marcela Paz");
+        assertEquals(libros[1][3], 3);
     }
 
     @Test
     void testAgregarLibroStock() {
-        LibraryBookManager.agregarLibro(biblioteca, "12345", "Papelucho", "Marcela Paz", 3);
-        LibraryBookManager.agregarLibro(biblioteca, "12345", "Papelucho", "Marcela Paz", 3);
-        assertEquals(biblioteca[1][0], "12345");
-        assertEquals(biblioteca[1][3], 6);
+        LibraryBookManager.agregarLibro(libros, "12345", "Papelucho", "Marcela Paz", 3);
+        LibraryBookManager.agregarLibro(libros, "12345", "Papelucho", "Marcela Paz", 3);
+        assertEquals(libros[1][0], "12345");
+        assertEquals(libros[1][3], 6);
     }
 
     @Test
@@ -66,5 +66,14 @@ class LibraryBookManagerTest {
         assertFalse(LibraryBookManager.accionesMenu(libros,5));
         assertTrue(LibraryBookManager.accionesMenu(libros, 1000));
     }
-
+    //Lucas
+    /*
+    @Test(expected = NullPointerException.class)
+    public void testBuscarLibroPorTítuloYCódigo_nullTitulo() {
+        buscarLibroPorTítuloYCódigo(null, "ISBN-1234");
+    }
+    @Test(expected = NullPointerException.class)
+    public void testBuscarLibroPorTítuloYCódigo_nullCodigo() {
+        buscarLibroPorTítuloYCódigo("Título de prueba", null);
+    }*/
 }
