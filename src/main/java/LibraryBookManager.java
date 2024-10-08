@@ -159,7 +159,7 @@ public class LibraryBookManager {
         return libros;
     }
 
-public static void menubuscarLibro(Object[][] libros) { //Funcion para buscar libros por ISBN de Lucas
+    public static void menubuscarLibro(Object[][] libros) { //Funcion para buscar libros por ISBN de Lucas
         String ISBN = leerCadena("ingresa el ISBN del libro que quieres buscar: ");
         Object[] libroEncontrado = buscarLibro(libros, ISBN);
         if (libroEncontrado != null) {
