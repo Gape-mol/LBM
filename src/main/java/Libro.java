@@ -12,10 +12,6 @@ public class Libro {
         this.year=year;
     }
 
-    /**
-	 * 
-	 * @param autor
-	 */
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
@@ -24,10 +20,6 @@ public class Libro {
 		return this.titulo;
 	}
 
-	/**
-	 * 
-	 * @param titulo
-	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
@@ -40,10 +32,6 @@ public class Libro {
 		return this.isbn;
 	}
 
-	/**
-	 * 
-	 * @param isbn
-	 */
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
@@ -52,12 +40,12 @@ public class Libro {
 		return this.year;
 	}
 
-	/**
-	 * 
-	 * @param year
-	 */
 	public void setYear(int year) {
 		this.year = year;
+	}
+
+	public String toString(){
+		return "Titulo:"+ this.titulo+"Autor: "+this.autor+"ISBN:"+ this.isbn+"año de publicacion"+this.year;
 	}
 
 }
