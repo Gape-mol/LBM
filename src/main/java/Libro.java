@@ -44,8 +44,10 @@ public class Libro {
 		this.year = year;
 	}
 
-	public String toString(){
-		return "Titulo:"+ this.titulo+"Autor: "+this.autor+"ISBN:"+ this.isbn+"año de publicacion"+this.year;
+	@Override
+	public String toString() {
+		return "Título: " + titulo + ", Autor: " + autor + ", ISBN: " + isbn + ", Año de publicación: " + year;
 	}
+
 
 }

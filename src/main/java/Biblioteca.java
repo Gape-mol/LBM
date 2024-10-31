@@ -71,4 +71,27 @@ public class Biblioteca {
             }
         }
     }
+
+    public void buscarLibroPorIsbn(String isbn){
+        for(Libro libro : libros){
+            if(libro.getIsbn().equals(isbn)){
+                System.out.println("Datos del Libro:...\n | Titulo: "+libro.getTitulo()+"| Autor: "+libro.getAutor()+"| ISBN: "+libro.getIsbn()+" | Año de publicacion: "+libro.getYear());
+                break;
+            }else{
+                System.out.println("El libro no fue encontrado, ningun ISBN registrado en la base de datos de la biblioteca coinside con el ISBN: "+libro.getIsbn()+" proporcionado");
+            }
+
+        }
+
+    }
+    public void mostrarBibliotecaCompleta() {
+        if (libros != null && !libros.isEmpty()) {
+            for (Libro libro : libros) {
+                System.out.println("Datos del libro: " + libro);
+            }
+        } else {
+            System.out.println("La biblioteca está vacía, no hay libros por mostrar.");
+        }
+    }
+
 }
