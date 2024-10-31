@@ -1,8 +1,17 @@
-public class Usuario {
+import java.util.List;
 
+public class Usuario {
 	private String nombre;
 	private int identificacion;
 	private List<Prestamo> prestamos;
+
+	public Usuario(List<Prestamo> prestamos, int identificacion, String nombre) {
+		this.prestamos = prestamos;
+		this.identificacion = identificacion;
+		this.nombre = nombre;
+	}
+
+
 
 	public String getNombre() {
 		return this.nombre;

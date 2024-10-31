@@ -5,7 +5,14 @@ public class Libro {
 	private String isbn;
 	private int year;
 
-	/**
+    public Libro(String titulo, String autor, String isbn, int year ) {
+        this.titulo = titulo;
+        this.autor=autor;
+        this.isbn=isbn;
+        this.year=year;
+    }
+
+    /**
 	 * 
 	 * @param autor
 	 */

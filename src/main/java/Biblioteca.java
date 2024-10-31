@@ -1,9 +1,16 @@
+import java.util.List;
+
 public class Biblioteca {
 
 	private String nombre;
 	private String direccion;
 	private List<Libro> libros;
 
+	public Biblioteca(String nombre, List<Libro> libros, String direccion) {
+		this.nombre = nombre;
+		this.libros = libros;
+		this.direccion = direccion;
+	}
 	public String getNombre() {
 		return this.nombre;
 	}

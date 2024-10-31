@@ -1,4 +1,11 @@
+import java.util.Date;
+
 public class Prestamo {
+
+	public Prestamo(Date fechaPrestamo, Date fechaDevolucion) {
+		this.fechaPrestamo = fechaPrestamo;
+		this.fechaDevolucion=fechaDevolucion;
+	}
 
 	private Date fechaPrestamo;
 	private Date fechaDevolucion;

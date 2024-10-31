@@ -1,8 +1,17 @@
+import java.util.Date;
+
 public class Multa {
 
 	private int monto;
+
 	private Date fecha;
 	private String estado;
+
+	public Multa(Date fecha, String estado, int monto) {
+		this.fecha = fecha;
+		this.estado=estado;
+		this.monto=monto;
+	}
 
 	public int getMonto() {
 		return this.monto;

@@ -1,8 +1,12 @@
 public class Reserva {
-
 	private int numeroSolicitud;
 	private String nombreUsuario;
 	private Libro libro;
+	public Reserva(int numeroSolicitud, String nombreUsuario, Libro libro) {
+		this.numeroSolicitud = numeroSolicitud;
+		this.libro=libro;
+		this.nombreUsuario=nombreUsuario;
+	}
 
 	public int getNumeroSolicitud() {
 		return this.numeroSolicitud;
