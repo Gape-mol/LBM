@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+
 public class Libro {
     private String titulo;
     private String autor;
     private String ISBN;
     private String editorial;
     private int year;
+    private ArrayList<Review> reviews;
 
     //Constructor
     public Libro(String titulo, String autor, String ISBN, String editorial, int year) {
@@ -12,6 +15,7 @@ public class Libro {
         this.ISBN = ISBN;
         this.editorial = editorial;
         this.year = year;
+        this.reviews = new ArrayList<Review>();
     }
 
     //Getters
