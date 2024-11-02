@@ -1,11 +1,11 @@
 public class Reserva {
 	private int numeroSolicitud;
-	private String nombreUsuario;
+	private Usuario usuario;
 	private Libro libro;
-	public Reserva(int numeroSolicitud, String nombreUsuario, Libro libro) {
+	public Reserva(int numeroSolicitud, Usuario nombreUsuario, Libro libro) {
 		this.numeroSolicitud = numeroSolicitud;
 		this.libro=libro;
-		this.nombreUsuario=nombreUsuario;
+		this.usuario=nombreUsuario;
 	}
 
 	public int getNumeroSolicitud() {
@@ -20,16 +20,12 @@ public class Reserva {
 		this.numeroSolicitud = numeroSolicitud;
 	}
 
-	public String getNombreUsuario() {
-		return this.nombreUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	/**
-	 * 
-	 * @param nombreUsuario
-	 */
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Libro getLibro() {
