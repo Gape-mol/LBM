@@ -64,4 +64,31 @@ public class Libro {
     public String toString() {
         return "Titulo: " + this.titulo + "\nAutor: " + this.autor + "\nISBN: " + this.ISBN + "\nEditorial: " + this.editorial + "\nAño: " + this.year;
     }
+
+    //Métodos
+    public void agregarReview(Review review) {
+        this.reviews.add(review);
+    }
+
+    //Busco la review por Usuario, ya que en teoria solo deberia haber una review por usuario
+    public Review buscarReview(Usuario usuario) {
+        for (Review review : this.reviews) {
+            if (review.getUsuario().equals(usuario)) {
+                return review;
+            }
+        }
+        return null;
+    }
+
+    public void editarReview(Usuario usuario, String texto, int calificacion) {
+        Review review = buscarReview(usuario);
+        review.setTexto(texto);
+        review.setCalificacion(calificacion);
+    }
+
+    public void mostrarReviews() {
+        for (Review review : this.reviews) {
+            System.out.println(review.toString());
+        }
+    }
 }
