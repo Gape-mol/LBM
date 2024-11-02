@@ -57,6 +57,20 @@ class LibraryBookManagerTest {
         assertEquals(libros[1][0], "12345");
         assertEquals(libros[1][3], 6);
     }
+    @Test
+    void TestagregarLibros(){
+        LibraryBookManager.agregarLibro(libros, "12345", "Papelucho", "Marcela Paz", 3);
+        LibraryBookManager.agregarLibro(libros,"123","el pepe","pepito",4);
+        LibraryBookManager.agregarLibro(libros,"124","LLego la hora","papi micky",3000);
+        LibraryBookManager.agregarLibro(libros,"125","mess arround","Ray charles",3);
+        LibraryBookManager.agregarLibro(libros,"126","Promises","Sam Smith",30);
+        assertNotNull(libros[1][3]);
+        String pepe = "pepito";
+        int tito = 3000;
+        assertEquals(libros[2][2],pepe);
+        assertEquals(libros[3][3],tito);
+        assertNotNull(libros[1][0]);
+    }
 
     @Test
     void accionesMenuTest(){
@@ -66,14 +80,5 @@ class LibraryBookManagerTest {
         assertFalse(LibraryBookManager.accionesMenu(libros,5));
         assertTrue(LibraryBookManager.accionesMenu(libros, 1000));
     }
-    //Lucas
-    /*
-    @Test(expected = NullPointerException.class)
-    public void testBuscarLibroPorTítuloYCódigo_nullTitulo() {
-        buscarLibroPorTítuloYCódigo(null, "ISBN-1234");
-    }
-    @Test(expected = NullPointerException.class)
-    public void testBuscarLibroPorTítuloYCódigo_nullCodigo() {
-        buscarLibroPorTítuloYCódigo("Título de prueba", null);
-    }*/
+
 }
