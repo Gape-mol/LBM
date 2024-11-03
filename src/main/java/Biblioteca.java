@@ -6,9 +6,8 @@ public class Biblioteca {
 	private String direccion;
 	private List<Libro> libros;
 
-	public Biblioteca(String nombre, List<Libro> libros, String direccion) {
+	public Biblioteca(String nombre, String direccion) {
 		this.nombre = nombre;
-		this.libros = libros;
 		this.direccion = direccion;
 	}
 	public String getNombre() {
