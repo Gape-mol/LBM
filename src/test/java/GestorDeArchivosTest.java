@@ -75,6 +75,9 @@ class GestorDeArchivosTest {
         gestor.guardarUsuarios(usuarios);
         ArrayList<Usuario> usuarios1 = gestor.cargarUsuarios();
         assertEquals(usuarios.size(), usuarios1.size());
+        for (int i = 0; i < usuarios1.size(); i++) {
+            assertEquals(usuarios.get(i).getNombre(), usuarios1.get(i).getNombre());
+        }
     }
 /*
     @Test
