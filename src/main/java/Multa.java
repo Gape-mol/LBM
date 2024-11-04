@@ -18,7 +18,7 @@ public class Multa {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param monto
 	 */
 	public void setMonto(int monto) {
@@ -30,7 +30,7 @@ public class Multa {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param fecha
 	 */
 	public void setFecha(Date fecha) {
@@ -42,7 +42,7 @@ public class Multa {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param estado
 	 */
 	public void setEstado(String estado) {

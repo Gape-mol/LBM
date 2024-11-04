@@ -1,47 +1,52 @@
 public class Reserva {
 	private int numeroSolicitud;
-	private String nombreUsuario;
+	private Usuario usuario;
 	private Libro libro;
-	public Reserva(int numeroSolicitud, String nombreUsuario, Libro libro) {
+	private String fechaReserva;
+
+	public Reserva(int numeroSolicitud, String usuario, Libro libro, String fechaReserva) {
 		this.numeroSolicitud = numeroSolicitud;
 		this.libro=libro;
-		this.nombreUsuario=nombreUsuario;
+		this.usuario=usuario;
+		this.fechaReserva=fechaReserva;
 	}
 
 	public int getNumeroSolicitud() {
 		return this.numeroSolicitud;
 	}
 
-	/**
-	 * 
-	 * @param numeroSolicitud
-	 */
 	public void setNumeroSolicitud(int numeroSolicitud) {
 		this.numeroSolicitud = numeroSolicitud;
 	}
 
-	public String getNombreUsuario() {
-		return this.nombreUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	/**
-	 * 
-	 * @param nombreUsuario
-	 */
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Libro getLibro() {
 		return this.libro;
 	}
 
-	/**
-	 * 
-	 * @param libro
-	 */
 	public void setLibro(Libro libro) {
 		this.libro = libro;
+	}
+
+	public String getFechaReserva() { return this.fechaReserva; }
+
+	public void setFechaReserva(String fechaReserva) { this.fechaReserva = fechaReserva; }
+
+	@Override
+	public String toString() {
+		return "Reserva{" +
+				"numeroSolicitud=" + numeroSolicitud +
+				", usuario='" + usuario + '\'' +
+				", libro=" + libro.getTitulo() +
+				", fechaReserva='" + fechaReserva + '\'' +
+				'}';
 	}
 
 }

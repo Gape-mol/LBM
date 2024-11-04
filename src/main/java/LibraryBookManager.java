@@ -143,6 +143,7 @@ public class LibraryBookManager {
     }
     // funcion que sera llamada por el menu principal para ejecutar la funcion eliminar libro
     public static void menuEliminarLibro(Object[][] libros){
+        listarLibros(libros);
         String ISBN = leerCadena("Ingrese el ISBN del libro a eliminar: ");
         eliminarLibro(libros, ISBN);
     }
