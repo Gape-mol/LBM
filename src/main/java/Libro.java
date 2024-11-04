@@ -3,16 +3,16 @@ import java.util.ArrayList;
 public class Libro {
     private String titulo;
     private String autor;
-    private String ISBN;
+    private String Isbn;
     private String editorial;
     private int year;
     private ArrayList<Review> reviews;
 
     //Constructor
-    public Libro(String titulo, String autor, String ISBN, String editorial, int year) {
+    public Libro(String titulo, String autor, String Isbn, String editorial, int year) {
         this.titulo = titulo;
         this.autor = autor;
-        this.ISBN = ISBN;
+        this.Isbn = Isbn;
         this.editorial = editorial;
         this.year = year;
         this.reviews = new ArrayList<Review>();
@@ -27,8 +27,8 @@ public class Libro {
         return this.autor;
     }
 
-    public String getISBN() {
-        return this.ISBN;
+    public String getIsbn() {
+        return this.Isbn;
     }
 
     public String getEditorial() {
@@ -37,6 +37,10 @@ public class Libro {
 
     public int getYear() {
         return this.year;
+    }
+
+    public ArrayList<Review> getReviews() {
+        return this.reviews;
     }
 
     //Setters
@@ -48,8 +52,8 @@ public class Libro {
         this.autor = autor;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String Isbn) {
+        this.Isbn = Isbn;
     }
 
     public void setEditorial(String editorial) {
@@ -60,9 +64,13 @@ public class Libro {
         this.year = year;
     }
 
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     //To String
     public String toString() {
-        return "Titulo: " + this.titulo + "\nAutor: " + this.autor + "\nISBN: " + this.ISBN + "\nEditorial: " + this.editorial + "\nAño: " + this.year;
+        return "Titulo: " + this.titulo + "\nAutor: " + this.autor + "\nIsbn: " + this.Isbn + "\nEditorial: " + this.editorial + "\nAño: " + this.year;
     }
 
     //Métodos
