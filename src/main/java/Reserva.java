@@ -4,7 +4,7 @@ public class Reserva {
 	private Libro libro;
 	private String fechaReserva;
 
-	public Reserva(int numeroSolicitud, String usuario, Libro libro, String fechaReserva) {
+	public Reserva(int numeroSolicitud, Usuario usuario, Libro libro, String fechaReserva) {
 		this.numeroSolicitud = numeroSolicitud;
 		this.libro=libro;
 		this.usuario=usuario;
