@@ -20,7 +20,7 @@ class UsuarioTest {
 
     @Test
     void agregarReserva() {
-        Reserva reserva = new Reserva(1, usuario, libro, "01/01/2021");
+        Reserva reserva = new Reserva(1, usuario, libro, fecha);
         usuario.agregarReserva(reserva);
         assertEquals(1, usuario.getReservas().size());
     }
@@ -42,7 +42,7 @@ class UsuarioTest {
 
     @Test
     void eliminarReserva() {
-        Reserva reserva = new Reserva(1, usuario, libro, "01/01/2021");
+        Reserva reserva = new Reserva(1, usuario, libro, fecha);
         usuario.agregarReserva(reserva);
         usuario.eliminarReserva(reserva);
         assertEquals(0, usuario.getReservas().size());
@@ -65,7 +65,7 @@ class UsuarioTest {
 
     @Test
     void mostrarReservas() {
-        Reserva reserva = new Reserva(1, usuario, libro, "01/01/2021");
+        Reserva reserva = new Reserva(1, usuario, libro, fecha);
         usuario.agregarReserva(reserva);
         usuario.mostrarReservas();
     }
