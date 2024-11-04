@@ -39,6 +39,10 @@ public class Libro {
         return this.year;
     }
 
+    public ArrayList<Review> getReviews() {
+        return this.reviews;
+    }
+
     //Setters
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -58,6 +62,10 @@ public class Libro {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
     }
 
     //To String
