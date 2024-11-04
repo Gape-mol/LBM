@@ -45,7 +45,7 @@ public class Biblioteca {
         System.out.println("Libro agregado correctamente.");
     }
 
-    public void modificarLibro( String newTitulo,String newAutor, String newIsbn, int newYear  ){
+    public void modificarLibro( String newTitulo,String newAutor, String newIsbn,String neweditorial, int newYear  ){
         for(Libro libro : libros){
             if(libro.getIsbn().equals(newIsbn)){
                 System.out.println("El ISBN que quieres asignar ya pertenece a otro libro");
