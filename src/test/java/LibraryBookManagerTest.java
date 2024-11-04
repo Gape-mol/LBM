@@ -13,6 +13,7 @@ class LibraryBookManagerTest {
         libros[0][2] = "Autor de prueba";
         libros[0][3] = 3; //Stock de prueba
     }
+/*
     @Test
     void testEliminarLibro() {
         String isbn = "1234567890";

@@ -1,49 +1,53 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
+   private String nombre;
+   private String direccion;
+   private List<Libro> libros;
 
-	private String nombre;
-	private String direccion;
-	private List<Libro> libros;
+   public Biblioteca(String nombre, String direccion) {
+       this.nombre = nombre;
+       this.direccion = direccion;
+       this.libros = new ArrayList<Libro>();
+   }
 
-	public Biblioteca(String nombre, String direccion) {
-		this.nombre = nombre;
-		this.direccion = direccion;
-	}
-	public String getNombre() {
-		return this.nombre;
-	}
 
-	/**
-	 * 
-	 * @param nombre
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+   public String getNombre() {
+       return this.nombre;
+   }
 
-	public String getDireccion() {
-		return this.direccion;
-	}
+   /**
+    *
+    * @param nombre
+    */
 
-	/**
-	 * 
-	 * @param direccion
-	 */
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
+   public void setNombre(String nombre) {
+       this.nombre = nombre;
+   }
 
-	public List<Libro> getLibros() {
-		return this.libros;
-	}
+   public String getDireccion() {
+       return this.direccion;
+   }
 
-	/**
-	 * 
-	 * @param libros
-	 */
-	public void setLibros(List<Libro> libros) {
-		this.libros = libros;
-	}
+   /**
+    *
+    * @param direccion
+    */
 
+   public void setDireccion(String direccion) {
+       this.direccion = direccion;
+   }
+
+   public List<Libro> getLibros() {
+       return this.libros;
+   }
+
+   /**
+    *
+    * @param libros
+    */
+   public void setLibros(List<Libro> libros) {
+       this.libros = libros;
+   }
 }
