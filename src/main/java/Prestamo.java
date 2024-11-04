@@ -2,13 +2,23 @@ import java.util.Date;
 
 public class Prestamo {
 
-	public Prestamo(Date fechaPrestamo, Date fechaDevolucion) {
-		this.fechaPrestamo = fechaPrestamo;
-		this.fechaDevolucion=fechaDevolucion;
-	}
-
 	private Date fechaPrestamo;
 	private Date fechaDevolucion;
+	private Libro libro;
+
+	public Prestamo(Date fechaPrestamo, Date fechaDevolucion, Libro libro) {
+		this.fechaPrestamo = fechaPrestamo;
+		this.fechaDevolucion = fechaDevolucion;
+		this.libro = libro;
+	}
+
+	public Libro getLibro() {
+		return libro;
+	}
+
+	public void setLibro(Libro libro) {
+		this.libro = libro;
+	}
 
 	public Date getFechaPrestamo() {
 		return this.fechaPrestamo;

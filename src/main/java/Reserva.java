@@ -1,13 +1,13 @@
 public class Reserva {
 	private int numeroSolicitud;
-	private String nombreUsuario;
+	private Usuario usuario;
 	private Libro libro;
 	private String fechaReserva;
 
-	public Reserva(int numeroSolicitud, String nombreUsuario, Libro libro, String fechaReserva) {
+	public Reserva(int numeroSolicitud, String usuario, Libro libro, String fechaReserva) {
 		this.numeroSolicitud = numeroSolicitud;
 		this.libro=libro;
-		this.nombreUsuario=nombreUsuario;
+		this.usuario=usuario;
 		this.fechaReserva=fechaReserva;
 	}
 
@@ -19,12 +19,12 @@ public class Reserva {
 		this.numeroSolicitud = numeroSolicitud;
 	}
 
-	public String getNombreUsuario() {
-		return this.nombreUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Libro getLibro() {
@@ -43,7 +43,7 @@ public class Reserva {
 	public String toString() {
 		return "Reserva{" +
 				"numeroSolicitud=" + numeroSolicitud +
-				", nombreUsuario='" + nombreUsuario + '\'' +
+				", usuario='" + usuario + '\'' +
 				", libro=" + libro.getTitulo() +
 				", fechaReserva='" + fechaReserva + '\'' +
 				'}';
