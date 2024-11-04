@@ -6,6 +6,7 @@ public class Libro {
     private String Isbn;
     private String editorial;
     private int year;
+
     private ArrayList<Review> reviews;
 
     //Constructor

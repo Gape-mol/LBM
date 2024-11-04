@@ -45,7 +45,7 @@ public class BibliotecaTest {
 
     @Test
     public void testModificarLibroExitoso() {
-        biblioteca.modificarLibro("Cincuenta sombras de Grey", "Nuevo Autor", "12345", "Pancho Villa",2022);
+        biblioteca.modificarLibro("Cincuenta sombras de Grey", "Nuevo Autor", "12345", "Pancho Villa","hola",2022);
 
         Libro libroModificado = biblioteca.getLibros().get(0);
         assertEquals("Cincuenta sombras de Grey", libroModificado.getTitulo());

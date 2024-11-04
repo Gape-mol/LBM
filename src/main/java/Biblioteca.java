@@ -45,19 +45,18 @@ public class Biblioteca {
         System.out.println("Libro agregado correctamente.");
     }
 
-    public void modificarLibro( String newTitulo,String newAutor, String newIsbn,String neweditorial, int newYear  ){
+    public void modificarLibro( String Isbn,String newTitulo,String newAutor, String newIsbn,String neweditorial, int newYear  ){
         for(Libro libro : libros){
-            if(libro.getIsbn().equals(newIsbn)){
-                System.out.println("El ISBN que quieres asignar ya pertenece a otro libro");
-            } else if (libro.getTitulo().equals(newTitulo)) {
-                System.out.println("El titulo que quieres asignar ya existe prueba con otro titulo");
-
-            }else{
+            if(libro.getIsbn().equals(Isbn)){
                 libro.setTitulo(newTitulo);
                 libro.setAutor(newAutor);
                 libro.setIsbn(newIsbn);
                 libro.setYear(newYear);
+                libro.setEditorial(neweditorial);
                 System.out.println("Libro editado con exito");
+                break;
+            }else{
+                System.out.println("El isbn que ingresaste no coincide con ningun libro");
             }
         }
     }
