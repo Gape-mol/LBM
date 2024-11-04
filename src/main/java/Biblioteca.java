@@ -90,7 +90,7 @@ public class Biblioteca {
                 System.out.println("Datos del libro: " + libro);
             }
         } else {
-            System.out.println("La biblioteca está vacía, no hay libros por mostrar.");
+            System.out.println("La biblioteca está vacía, no hay libros por mostrar .");
         }
     }
 
