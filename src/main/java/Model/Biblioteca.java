@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.List;
 
 public class Biblioteca {
@@ -42,7 +44,7 @@ public class Biblioteca {
             }
         }
         libros.add(newLibro);
-        System.out.println("Libro agregado correctamente.");
+        System.out.println("Model.Libro agregado correctamente.");
     }
 
     public void modificarLibro( String newTitulo,String newAutor, String newIsbn,String neweditorial, int newYear  ){
@@ -57,7 +59,7 @@ public class Biblioteca {
                 libro.setAutor(newAutor);
                 libro.setIsbn(newIsbn);
                 libro.setYear(newYear);
-                System.out.println("Libro editado con exito");
+                System.out.println("Model.Libro editado con exito");
             }
         }
     }
@@ -75,7 +77,7 @@ public class Biblioteca {
     public void buscarLibroPorIsbn(String isbn){
         for(Libro libro : libros){
             if(libro.getIsbn().equals(isbn)){
-                System.out.println("Datos del Libro:...\n | Titulo: "+libro.getTitulo()+"| Autor: "+libro.getAutor()+"| ISBN: "+libro.getIsbn()+" | Año de publicacion: "+libro.getYear());
+                System.out.println("Datos del Model.Libro:...\n | Titulo: "+libro.getTitulo()+"| Autor: "+libro.getAutor()+"| ISBN: "+libro.getIsbn()+" | Año de publicacion: "+libro.getYear());
                 break;
             }else{
                 System.out.println("El libro no fue encontrado, ningun ISBN registrado en la base de datos de la biblioteca coinside con el ISBN: "+libro.getIsbn()+" proporcionado");

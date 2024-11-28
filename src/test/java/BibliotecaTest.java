@@ -1,3 +1,5 @@
+import Model.Biblioteca;
+import Model.Libro;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +15,7 @@ public class BibliotecaTest {
     @BeforeEach
     public void setUp() {
         // Inicializamos la biblioteca sin libros
-        biblioteca = new Biblioteca("Biblioteca Central", "123 Calle Falsa");
+        biblioteca = new Biblioteca("Model.Biblioteca Central", "123 Calle Falsa");
 
         // Creamos objetos de libros para usar en las pruebas
         libro1 = new Libro("Cincuenta sombras de Grey", "Erika Leonard Mitchell", "12345","martavid", 2011 );
@@ -36,7 +38,7 @@ public class BibliotecaTest {
 
     @Test
     public void testCrearLibroConIsbnExistente() {
-        Libro libroDuplicado = new Libro("Libro duplicado", "Autor desconocido", "12345", "parapapam",200);
+        Libro libroDuplicado = new Libro("Model.Libro duplicado", "Autor desconocido", "12345", "parapapam",200);
         biblioteca.crearLibro(libroDuplicado);
 
         assertEquals(1, biblioteca.getLibros().size());  // El libro duplicado no debería agregarse
