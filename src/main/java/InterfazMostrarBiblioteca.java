@@ -2,36 +2,52 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class InterfazMostrarBiblioteca extends JFrame {
 
-    public InterfazMostrarBiblioteca() {
+    private Biblioteca biblioteca;
+
+    public InterfazMostrarBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+
         setTitle("Mostrar Biblioteca");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        JTextArea areaBiblioteca = new JTextArea();
-        JScrollPane scrollPane = new JScrollPane(areaBiblioteca);
-        areaBiblioteca.setEditable(false);
+        JTextArea areaLibros = new JTextArea();
+        areaLibros.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(areaLibros);
 
         JButton btnVolver = new JButton("Volver");
+
+        // Mostrar los libros
+        if (biblioteca.getLibros().isEmpty()) {
+            areaLibros.setText("La biblioteca está vacía, no hay libros por mostrar.");
+        } else {
+            StringBuilder librosInfo = new StringBuilder();
+            for (Libro libro : biblioteca.getLibros()) {
+                librosInfo.append("Título: ").append(libro.getTitulo())
+                        .append("\nAutor: ").append(libro.getAutor())
+                        .append("\nISBN: ").append(libro.getIsbn())
+                        .append("\nEditorial: ").append(libro.getEditorial())
+                        .append("\nAño: ").append(libro.getYear())
+                        .append("\n\n");
+            }
+            areaLibros.setText(librosInfo.toString());
+        }
 
         add(scrollPane, BorderLayout.CENTER);
         add(btnVolver, BorderLayout.SOUTH);
 
-        // Lógica para mostrar la biblioteca completa (debes agregarla)
-        areaBiblioteca.setText("Aquí se mostrarían todos los libros de la biblioteca.");
-
-        // Acción para volver al frame principal
-        btnVolver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);  // Ocultar la ventana de mostrar biblioteca
-                InterfazPrincipal principalFrame = new InterfazPrincipal();
-                principalFrame.setVisible(true);  // Mostrar el frame principal
-            }
+        // Acción para volver al menú principal
+        btnVolver.addActionListener((ActionEvent e) -> {
+            setVisible(false);
+            new InterfazPrincipal(biblioteca).setVisible(true);
         });
     }
 }

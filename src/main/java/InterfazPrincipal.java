@@ -5,7 +5,11 @@ import java.awt.event.ActionListener;
 
 public class InterfazPrincipal extends JFrame {
 
-    public InterfazPrincipal() {
+    private Biblioteca biblioteca;  // Instancia de la clase Biblioteca
+
+    public InterfazPrincipal(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;  // Inicializa la biblioteca
+
         setTitle("Biblioteca");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,7 +33,7 @@ public class InterfazPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Mostrar la ventana para crear libro
-                InterfazCrearLibro crearLibroFrame = new InterfazCrearLibro();
+                InterfazCrearLibro crearLibroFrame = new InterfazCrearLibro(biblioteca);  // Pasar la instancia de Biblioteca
                 crearLibroFrame.setVisible(true);
                 setVisible(false);  // Ocultar la ventana principal
             }
@@ -40,7 +44,7 @@ public class InterfazPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Mostrar la ventana para modificar libro
-                InterfazModificarLibro modificarLibroFrame = new InterfazModificarLibro();
+                InterfazModificarLibro modificarLibroFrame = new InterfazModificarLibro(biblioteca);  // Pasar la instancia de Biblioteca
                 modificarLibroFrame.setVisible(true);
                 setVisible(false);  // Ocultar la ventana principal
             }
@@ -51,7 +55,7 @@ public class InterfazPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Mostrar la ventana para eliminar libro
-                InterfazEliminarLibro eliminarLibroFrame = new InterfazEliminarLibro();
+                InterfazEliminarLibro eliminarLibroFrame = new InterfazEliminarLibro(biblioteca);  // Pasar la instancia de Biblioteca
                 eliminarLibroFrame.setVisible(true);
                 setVisible(false);  // Ocultar la ventana principal
             }
@@ -62,7 +66,7 @@ public class InterfazPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Mostrar la ventana para buscar libro
-                InterfazBuscarLibro buscarLibroFrame = new InterfazBuscarLibro();
+                InterfazBuscarLibro buscarLibroFrame = new InterfazBuscarLibro(biblioteca);  // Pasar la instancia de Biblioteca
                 buscarLibroFrame.setVisible(true);
                 setVisible(false);  // Ocultar la ventana principal
             }
@@ -73,7 +77,7 @@ public class InterfazPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Mostrar la ventana para mostrar la biblioteca
-                InterfazMostrarBiblioteca mostrarBibliotecaFrame = new InterfazMostrarBiblioteca();
+                InterfazMostrarBiblioteca mostrarBibliotecaFrame = new InterfazMostrarBiblioteca(biblioteca);  // Pasar la instancia de Biblioteca
                 mostrarBibliotecaFrame.setVisible(true);
                 setVisible(false);  // Ocultar la ventana principal
             }
@@ -81,12 +85,14 @@ public class InterfazPrincipal extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                InterfazPrincipal principal = new InterfazPrincipal();
-                principal.setVisible(true);
-            }
+        // Crear una instancia de la biblioteca
+        Biblioteca biblioteca = new Biblioteca("Biblioteca Central", "Calle Ficticia 123");
+
+        // Ejecutar la interfaz principal con la biblioteca creada
+        SwingUtilities.invokeLater(() -> {
+            InterfazPrincipal principal = new InterfazPrincipal(biblioteca);
+            principal.setVisible(true);
         });
     }
+
 }

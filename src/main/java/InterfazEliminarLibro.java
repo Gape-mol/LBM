@@ -5,7 +5,11 @@ import java.awt.event.ActionListener;
 
 public class InterfazEliminarLibro extends JFrame {
 
-    public InterfazEliminarLibro() {
+    private Biblioteca biblioteca;
+
+    public InterfazEliminarLibro(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+
         setTitle("Eliminar Libro");
         setSize(400, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -23,25 +27,19 @@ public class InterfazEliminarLibro extends JFrame {
         add(btnVolver);
 
         // Acción para eliminar el libro
-        btnEliminar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String isbn = campoISBN.getText();
+        btnEliminar.addActionListener(e -> {
+            String isbn = campoISBN.getText();
+            biblioteca.eliminarLibroPorIsbn(isbn);
 
-                // Lógica para eliminar el libro (debes agregarla)
-                JOptionPane.showMessageDialog(null, "Libro eliminado correctamente.");
-                setVisible(false);  // Cerrar la ventana
-            }
+            JOptionPane.showMessageDialog(null, "Libro eliminado correctamente.");
+            setVisible(false);
+            new InterfazPrincipal(biblioteca).setVisible(true);
         });
 
         // Acción para volver al frame principal
-        btnVolver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);  // Ocultar la ventana de eliminar libro
-                InterfazPrincipal principalFrame = new InterfazPrincipal();
-                principalFrame.setVisible(true);  // Mostrar el frame principal
-            }
+        btnVolver.addActionListener(e -> {
+            setVisible(false);
+            new InterfazPrincipal(biblioteca).setVisible(true);
         });
     }
 }

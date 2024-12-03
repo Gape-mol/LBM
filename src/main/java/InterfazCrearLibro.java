@@ -5,7 +5,11 @@ import java.awt.event.ActionListener;
 
 public class InterfazCrearLibro extends JFrame {
 
-    public InterfazCrearLibro() {
+    private Biblioteca biblioteca;
+
+    public InterfazCrearLibro(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+
         setTitle("Crear Libro");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -20,8 +24,8 @@ public class InterfazCrearLibro extends JFrame {
         JTextField campoISBN = new JTextField(20);
         JLabel labelAnio = new JLabel("Año:");
         JTextField campoAnio = new JTextField(20);
-        JLabel labelGenero = new JLabel("Género:");
-        JTextField campoGenero = new JTextField(20);
+        JLabel labelEditorial = new JLabel("Editorial:");
+        JTextField campoEditorial = new JTextField(20);
 
         JButton btnGuardar = new JButton("Guardar");
         JButton btnVolver = new JButton("Volver");
@@ -34,35 +38,30 @@ public class InterfazCrearLibro extends JFrame {
         add(campoISBN);
         add(labelAnio);
         add(campoAnio);
-        add(labelGenero);
-        add(campoGenero);
+        add(labelEditorial);
+        add(campoEditorial);
         add(btnGuardar);
         add(btnVolver);
 
         // Acción para guardar el libro
-        btnGuardar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String titulo = campoTitulo.getText();
-                String autor = campoAutor.getText();
-                String isbn = campoISBN.getText();
-                String anio = campoAnio.getText();
-                String genero = campoGenero.getText();
+        btnGuardar.addActionListener(e -> {
+            String titulo = campoTitulo.getText();
+            String autor = campoAutor.getText();
+            String isbn = campoISBN.getText();
+            int anio = Integer.parseInt(campoAnio.getText());
+            String editorial = campoEditorial.getText();
 
-                // Agregar lógica para guardar el libro aquí
-                JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
-                setVisible(false); // Cerrar la ventana de creación
-            }
+            biblioteca.crearLibro(titulo, autor, isbn, editorial, anio);
+
+            JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
+            setVisible(false);
+            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
         });
 
         // Acción para volver al frame principal
-        btnVolver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false); // Cerrar la ventana actual
-                InterfazPrincipal principalFrame = new InterfazPrincipal();
-                principalFrame.setVisible(true); // Mostrar el frame principal
-            }
+        btnVolver.addActionListener(e -> {
+            setVisible(false);
+            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
         });
     }
 }

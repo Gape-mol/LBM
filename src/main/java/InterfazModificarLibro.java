@@ -5,7 +5,11 @@ import java.awt.event.ActionListener;
 
 public class InterfazModificarLibro extends JFrame {
 
-    public InterfazModificarLibro() {
+    private Biblioteca biblioteca;
+
+    public InterfazModificarLibro(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+
         setTitle("Modificar Libro");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -20,8 +24,8 @@ public class InterfazModificarLibro extends JFrame {
         JTextField campoAutor = new JTextField(20);
         JLabel labelAnio = new JLabel("Nuevo Año:");
         JTextField campoAnio = new JTextField(20);
-        JLabel labelGenero = new JLabel("Nuevo Género:");
-        JTextField campoGenero = new JTextField(20);
+        JLabel labelEditorial = new JLabel("Nueva Editorial:");
+        JTextField campoEditorial = new JTextField(20);
 
         JButton btnModificar = new JButton("Modificar");
         JButton btnVolver = new JButton("Volver");
@@ -34,35 +38,31 @@ public class InterfazModificarLibro extends JFrame {
         add(campoAutor);
         add(labelAnio);
         add(campoAnio);
-        add(labelGenero);
-        add(campoGenero);
+        add(labelEditorial);
+        add(campoEditorial);
         add(btnModificar);
         add(btnVolver);
 
         // Acción para modificar el libro
-        btnModificar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String isbn = campoISBN.getText();
-                String titulo = campoTitulo.getText();
-                String autor = campoAutor.getText();
-                String anio = campoAnio.getText();
-                String genero = campoGenero.getText();
+        btnModificar.addActionListener(e -> {
+            String isbn = campoISBN.getText();
+            String titulo = campoTitulo.getText();
+            String autor = campoAutor.getText();
+            int anio = Integer.parseInt(campoAnio.getText());
+            String editorial = campoEditorial.getText();
 
-                // Lógica para modificar el libro (debes agregarla)
-                JOptionPane.showMessageDialog(null, "Libro modificado correctamente.");
-                setVisible(false);
-            }
+            biblioteca.modificarLibro(isbn, titulo, autor, isbn, editorial, anio);
+
+            JOptionPane.showMessageDialog(null, "Libro modificado correctamente.");
+            setVisible(false);
+            new InterfazPrincipal(biblioteca).setVisible(true);
         });
 
         // Acción para volver al frame principal
-        btnVolver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);  // Ocultar la ventana de modificar libro
-                InterfazPrincipal principalFrame = new InterfazPrincipal();
-                principalFrame.setVisible(true);  // Mostrar el frame principal
-            }
+        btnVolver.addActionListener(e -> {
+            setVisible(false);
+            new InterfazPrincipal(biblioteca).setVisible(true);
         });
     }
 }
+
