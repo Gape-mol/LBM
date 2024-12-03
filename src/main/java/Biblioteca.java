@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
@@ -10,6 +11,7 @@ public class Biblioteca {
         this.nombre = nombre;
 
         this.direccion = direccion;
+        this.libros = new ArrayList<>();
     }
     public String getNombre() {
         return this.nombre;
@@ -34,43 +36,50 @@ public class Biblioteca {
         this.libros = libros;
     }
 
-    public void crearLibro(Libro newLibro) {
+    public void crearLibro(String titulo, String autor, String isbn,String Editorial, int Year) {
+        // Verificar si ya existe un libro con el mismo ISBN
         for (Libro libro : libros) {
-            if (libro.getIsbn().equals(newLibro.getIsbn())) {
+            if (libro.getIsbn().equals(isbn)) {
                 System.out.println("El ISBN de este libro ya está asignado a otro libro.");
-                return;
+                return; // Salimos del método si se encuentra un duplicado
             }
         }
+
+        // Crear un nuevo objeto Libro y agregarlo a la lista
+        Libro newLibro = new Libro(titulo, autor, isbn,Editorial, Year);
         libros.add(newLibro);
-        System.out.println("Libro agregado correctamente.");
+        System.out.println("Libro creado y agregado exitosamente: " + newLibro);
     }
 
-    public void modificarLibro( String newTitulo,String newAutor, String newIsbn,String neweditorial, int newYear  ){
-        for(Libro libro : libros){
-            if(libro.getIsbn().equals(newIsbn)){
-                System.out.println("El ISBN que quieres asignar ya pertenece a otro libro");
-            } else if (libro.getTitulo().equals(newTitulo)) {
-                System.out.println("El titulo que quieres asignar ya existe prueba con otro titulo");
 
-            }else{
+    public void modificarLibro( String Isbn,String newTitulo,String newAutor, String newIsbn,String neweditorial, int newYear  ){
+        for(Libro libro : libros){
+            if(libro.getIsbn().equals(Isbn)){
                 libro.setTitulo(newTitulo);
                 libro.setAutor(newAutor);
                 libro.setIsbn(newIsbn);
                 libro.setYear(newYear);
+                libro.setEditorial(neweditorial);
                 System.out.println("Libro editado con exito");
+                break;
+            }else{
+                System.out.println("El isbn que ingresaste no coincide con ningun libro");
             }
         }
     }
 
-    public void eliminarLibroPorIsbn(String isbn){
-        for(Libro libro : libros){
-            if(libro.getIsbn().equals(isbn)){
+    public void eliminarLibroPorIsbn(String isbn) {
+        for (Libro libro : libros) {
+            if (libro.getIsbn().equals(isbn)) {
                 libros.remove(libro);
-            }else{
-                System.out.println("Este ISBN"+libro.getIsbn()+" no esta asignado a ningun libro existente");
+                System.out.println("El libro con ISBN " + isbn + " ha sido eliminado.");
+                break;
+            } else {
+                System.out.println("Este ISBN " + libro.getIsbn() + " no está asignado a ningún libro existente");
             }
         }
     }
+
 
     public void buscarLibroPorIsbn(String isbn){
         for(Libro libro : libros){

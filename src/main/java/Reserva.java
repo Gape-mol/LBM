@@ -1,10 +1,12 @@
+import java.util.Date;
+
 public class Reserva {
 	private int numeroSolicitud;
 	private Usuario usuario;
 	private Libro libro;
-	private String fechaReserva;
+	private Date fechaReserva;
 
-	public Reserva(int numeroSolicitud, Usuario usuario, Libro libro, String fechaReserva) {
+	public Reserva(int numeroSolicitud, Usuario usuario, Libro libro, Date fechaReserva) {
 		this.numeroSolicitud = numeroSolicitud;
 		this.libro=libro;
 		this.usuario=usuario;
@@ -35,9 +37,9 @@ public class Reserva {
 		this.libro = libro;
 	}
 
-	public String getFechaReserva() { return this.fechaReserva; }
+	public Date getFechaReserva() { return this.fechaReserva; }
 
-	public void setFechaReserva(String fechaReserva) { this.fechaReserva = fechaReserva; }
+	public void setFechaReserva(Date fechaReserva) { this.fechaReserva = fechaReserva; }
 
 	@Override
 	public String toString() {
