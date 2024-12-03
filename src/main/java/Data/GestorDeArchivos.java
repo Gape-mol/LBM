@@ -1,3 +1,7 @@
+package Data;
+
+import Model.*;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -61,7 +65,7 @@ public class GestorDeArchivos {
 /*
     public boolean verificarIntegridadArchivos(){
         boolean verificado = true;
-        String[] archivos = {"Biblioteca.java", "Libros.java", "Review.java", "Multa.java", "Prestamo.java", "Usuario.java", "Reserva.java"};
+        String[] archivos = {"Model.Biblioteca.java", "Libros.java", "Model.Review.java", "Model.Multa.java", "Model.Prestamo.java", "Model.Usuario.java", "Model.Reserva.java"};
         for (String archivo : archivos){
 
             File file = new File(System.getProperty("user.dir"),archivo);

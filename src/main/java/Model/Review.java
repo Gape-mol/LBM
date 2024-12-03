@@ -1,3 +1,5 @@
+package Model;
+
 public class Review {
     private String texto;
     private int calificacion;

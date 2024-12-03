@@ -1,3 +1,5 @@
+import Model.Biblioteca;
+import Model.Libro;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +15,7 @@ public class BibliotecaTest {
     @BeforeEach
     public void setUp() {
         // Inicializamos la biblioteca sin libros
-        biblioteca = new Biblioteca("Biblioteca Central", "123 Calle Falsa");
+        biblioteca = new Biblioteca("Model.Biblioteca Central", "123 Calle Falsa");
 
         // Creamos objetos de libros para usar en las pruebas
         libro1 = new Libro("Cincuenta sombras de Grey", "Erika Leonard Mitchell", "12345","martavid", 2011 );
@@ -27,16 +29,17 @@ public class BibliotecaTest {
 
     @Test
     public void testCrearLibroExitoso() {
-
-        biblioteca.crearLibro("Don Quijote", "Miguel de Cervantes", "11111", "IVREA",1943);
+        Libro libro3 = new Libro("Don Quijote", "Miguel de Cervantes", "11111", "IVREA", 1943);
+        biblioteca.crearLibro(libro3);
 
         assertEquals(2, biblioteca.getLibros().size());
+        assertTrue(biblioteca.getLibros().contains(libro3));
     }
 
     @Test
     public void testCrearLibroConIsbnExistente() {
-
-        biblioteca.crearLibro("Libro duplicado", "Autor desconocido", "12345", "parapapam",200);
+        Libro libroDuplicado = new Libro("Model.Libro duplicado", "Autor desconocido", "12345", "parapapam",200);
+        biblioteca.crearLibro(libroDuplicado);
 
         assertEquals(1, biblioteca.getLibros().size());  // El libro duplicado no debería agregarse
     }
@@ -44,7 +47,7 @@ public class BibliotecaTest {
 
     @Test
     public void testModificarLibroExitoso() {
-        biblioteca.modificarLibro("Cincuenta sombras de Grey", "Nuevo Autor", "12345", "Pancho Villa","hola",2022);
+        biblioteca.modificarLibro("Cincuenta sombras de Grey", "Nuevo Autor", "12345", "Pancho Villa",2022);
 
         Libro libroModificado = biblioteca.getLibros().get(0);
         assertEquals("Cincuenta sombras de Grey", libroModificado.getTitulo());

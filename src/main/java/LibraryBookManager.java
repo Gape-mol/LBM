@@ -72,9 +72,9 @@ public class LibraryBookManager {
     //Metodo que imprime el menú en la consola
     public static void mostrarMenu() {
         System.out.println("\n---Library Book Manager---");
-        System.out.println("1. Agregar Libro");
-        System.out.println("2. Eliminar Libro");
-        System.out.println("3. Buscar Libro");
+        System.out.println("1. Agregar Model.Libro");
+        System.out.println("2. Eliminar Model.Libro");
+        System.out.println("3. Buscar Model.Libro");
         System.out.println("4. Listar Libros");
         System.out.println("5. Salir");
         System.out.print("Seleccione una opción: ");
@@ -87,7 +87,7 @@ public class LibraryBookManager {
         String autor = leerCadena("Ingrese el autor del libro: ");
         int stock = leerStock("Ingrese el stock del libro: ");
         agregarLibro(biblioteca, ISBN, titulo, autor, stock);
-        System.out.println("Libro ingresado con exito.");
+        System.out.println("Model.Libro ingresado con exito.");
     }
 
     //Funcion para agregar el libro a la matriz, si el ISBN ya existe dentro de la matriz, se agregará el stock ingresado al que estaba guardado.
@@ -152,10 +152,10 @@ public class LibraryBookManager {
         Object[] libro = buscarLibro(libros, ISBN);
         if(libro != null){
             Arrays.fill(libro, null); // si el libro es encontrado se llena de null ese espacio de la matriz
-            System.out.println("Libro eliminado");
+            System.out.println("Model.Libro eliminado");
         }
         else{
-            System.out.println("Libro no encontrado");
+            System.out.println("Model.Libro no encontrado");
         }
         return libros;
     }
@@ -164,10 +164,10 @@ public class LibraryBookManager {
         String ISBN = leerCadena("ingresa el ISBN del libro que quieres buscar: ");
         Object[] libroEncontrado = buscarLibro(libros, ISBN);
         if (libroEncontrado != null) {
-            System.out.println("Libro encontrado!");
+            System.out.println("Model.Libro encontrado!");
             System.out.println("Título: " + libroEncontrado[1]+ " | " +"Autor: " + libroEncontrado[2] +" | " +"Stock: " + libroEncontrado[3] );
         } else {
-            System.out.println("Libro no encontrado revisa el ISBN del libro");
+            System.out.println("Model.Libro no encontrado revisa el ISBN del libro");
         }
     }
     public static Object[] buscarLibro(Object[][] libros, String ISBN) {
