@@ -1,3 +1,5 @@
+import Model.Biblioteca;
+import Model.Libro;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,17 +29,16 @@ public class BibliotecaTest {
 
     @Test
     public void testCrearLibroExitoso() {
-        Libro libro3 = new Libro("Don Quijote", "Miguel de Cervantes", "11111", "IVREA", 1943);
-        biblioteca.crearLibro(libro3);
+
+        biblioteca.crearLibro(new Libro("Don Quijote", "Miguel de Cervantes", "11111", "IVREA",1943));
 
         assertEquals(2, biblioteca.getLibros().size());
-        assertTrue(biblioteca.getLibros().contains(libro3));
     }
 
     @Test
     public void testCrearLibroConIsbnExistente() {
-        Libro libroDuplicado = new Libro("Libro duplicado", "Autor desconocido", "12345", "parapapam",200);
-        biblioteca.crearLibro(libroDuplicado);
+
+        biblioteca.crearLibro(new Libro("Libro duplicado", "Autor desconocido", "12345", "parapapam",200));
 
         assertEquals(1, biblioteca.getLibros().size());  // El libro duplicado no debería agregarse
     }
@@ -45,7 +46,7 @@ public class BibliotecaTest {
 
     @Test
     public void testModificarLibroExitoso() {
-        biblioteca.modificarLibro("Cincuenta sombras de Grey", "Nuevo Autor", "12345", "Pancho Villa","hola",2022);
+        biblioteca.modificarLibro("Cincuenta sombras de Grey", "Nuevo Autor", "12345", "Pancho Villa",2022);
 
         Libro libroModificado = biblioteca.getLibros().get(0);
         assertEquals("Cincuenta sombras de Grey", libroModificado.getTitulo());

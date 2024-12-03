@@ -1,3 +1,6 @@
+import Data.GestorDeArchivos;
+import Model.Biblioteca;
+import Model.Usuario;
 import org.junit.jupiter.api.*;
 
 import java.io.File;
