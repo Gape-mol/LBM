@@ -10,7 +10,6 @@ public class Biblioteca {
 
     public Biblioteca(String nombre, String direccion) {
         this.nombre = nombre;
-
         this.direccion = direccion;
     }
     public String getNombre() {

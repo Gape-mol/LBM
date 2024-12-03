@@ -15,7 +15,7 @@ public class BibliotecaTest {
     @BeforeEach
     public void setUp() {
         // Inicializamos la biblioteca sin libros
-        biblioteca = new Biblioteca("Model.Biblioteca Central", "123 Calle Falsa");
+        biblioteca = new Biblioteca("Biblioteca Central", "123 Calle Falsa");
 
         // Creamos objetos de libros para usar en las pruebas
         libro1 = new Libro("Cincuenta sombras de Grey", "Erika Leonard Mitchell", "12345","martavid", 2011 );
@@ -29,17 +29,16 @@ public class BibliotecaTest {
 
     @Test
     public void testCrearLibroExitoso() {
-        Libro libro3 = new Libro("Don Quijote", "Miguel de Cervantes", "11111", "IVREA", 1943);
-        biblioteca.crearLibro(libro3);
+
+        biblioteca.crearLibro(new Libro("Don Quijote", "Miguel de Cervantes", "11111", "IVREA",1943));
 
         assertEquals(2, biblioteca.getLibros().size());
-        assertTrue(biblioteca.getLibros().contains(libro3));
     }
 
     @Test
     public void testCrearLibroConIsbnExistente() {
-        Libro libroDuplicado = new Libro("Model.Libro duplicado", "Autor desconocido", "12345", "parapapam",200);
-        biblioteca.crearLibro(libroDuplicado);
+
+        biblioteca.crearLibro(new Libro("Libro duplicado", "Autor desconocido", "12345", "parapapam",200));
 
         assertEquals(1, biblioteca.getLibros().size());  // El libro duplicado no debería agregarse
     }

@@ -1,3 +1,5 @@
+package GUI;
+
 import Model.Biblioteca;
 
 import javax.swing.*;
@@ -80,8 +82,9 @@ public class InterfazPrincipal extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Mostrar la ventana para mostrar la biblioteca
                 InterfazMostrarBiblioteca mostrarBibliotecaFrame = new InterfazMostrarBiblioteca(biblioteca);  // Pasar la instancia de Biblioteca
-                mostrarBibliotecaFrame.setVisible(true);
-                setVisible(false);  // Ocultar la ventana principal
+                if (mostrarBibliotecaFrame.isVisible()) { // Solo oculta la principal si la nueva ventana se muestra
+                    setVisible(false);
+                }
             }
         });
     }
