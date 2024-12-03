@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
@@ -10,6 +11,7 @@ public class Biblioteca {
         this.nombre = nombre;
 
         this.direccion = direccion;
+        this.libros = new ArrayList<>();
     }
     public String getNombre() {
         return this.nombre;
