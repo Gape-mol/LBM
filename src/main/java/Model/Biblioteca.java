@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Biblioteca {
@@ -66,12 +67,21 @@ public class Biblioteca {
     }
 
     public void eliminarLibroPorIsbn(String isbn){
-        for(Libro libro : libros){
+        //Cambio del for each por un iterador para evitar la excepcion de concurrencia al eliminar un libro
+        Iterator<Libro> iterator = libros.iterator();
+        boolean encontrado = false;
+
+        while(iterator.hasNext()){
+            Libro libro = iterator.next();
             if(libro.getIsbn().equals(isbn)){
-                libros.remove(libro);
-            }else{
-                System.out.println("Este ISBN"+libro.getIsbn()+" no esta asignado a ningun libro existente");
+                iterator.remove();
+                encontrado = true;
+                System.out.println("Model.Libro eliminado correctamente.");
+                break;
             }
+        }
+        if(!encontrado){
+            System.out.println("El libro no fue encontrado, ningun ISBN registrado en la base de datos de la biblioteca coinside con el ISBN: "+isbn+" proporcionado");
         }
     }
 
