@@ -81,7 +81,9 @@ public class InterfazPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Mostrar la ventana para mostrar la biblioteca
-                InterfazMostrarBiblioteca mostrarBibliotecaFrame = new InterfazMostrarBiblioteca(biblioteca);  // Pasar la instancia de Biblioteca
+                InterfazMostrarBiblioteca mostrarBibliotecaFrame = new InterfazMostrarBiblioteca(biblioteca);
+                mostrarBibliotecaFrame.setVisible(true);
+                // Pasar la instancia de Biblioteca
                 if (mostrarBibliotecaFrame.isVisible()) { // Solo oculta la principal si la nueva ventana se muestra
                     setVisible(false);
                 }

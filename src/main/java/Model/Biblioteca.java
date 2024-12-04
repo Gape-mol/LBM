@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
@@ -11,6 +12,7 @@ public class Biblioteca {
     public Biblioteca(String nombre, String direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
+        this.libros = new ArrayList<>();
     }
     public String getNombre() {
         return this.nombre;
