@@ -85,17 +85,20 @@ public class Biblioteca {
         }
     }
 
-    public void buscarLibroPorIsbn(String isbn){
-        for(Libro libro : libros){
-            if(libro.getIsbn().equals(isbn)){
-                System.out.println("Datos del Model.Libro:...\n | Titulo: "+libro.getTitulo()+"| Autor: "+libro.getAutor()+"| ISBN: "+libro.getIsbn()+" | Año de publicacion: "+libro.getYear());
-                break;
-            }else{
-                System.out.println("El libro no fue encontrado, ningun ISBN registrado en la base de datos de la biblioteca coinside con el ISBN: "+libro.getIsbn()+" proporcionado");
+    public Libro buscarLibroPorIsbn(String isbn) {
+        for (Libro libro : libros) {
+            if (libro.getIsbn().equals(isbn)) {
+                // Mostramos los datos del libro encontrado
+                System.out.println("Datos del libro:\n | Titulo: " + libro.getTitulo() +
+                        " | Autor: " + libro.getAutor() +
+                        " | ISBN: " + libro.getIsbn() +
+                        " | Año de publicación: " + libro.getYear());
+                return libro; // Retorna el libro encontrado
             }
-
         }
-
+        // Si no se encuentra ningún libro
+        System.out.println("El libro con ISBN " + isbn + " no fue encontrado.");
+        return null; // Retorna null si no se encuentra el libro
     }
     public void mostrarBibliotecaCompleta() {
         if (libros != null && !libros.isEmpty()) {

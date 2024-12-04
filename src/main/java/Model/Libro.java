@@ -102,4 +102,8 @@ public class Libro {
             System.out.println(review.toString());
         }
     }
+
+    public void eliminarReview(Review review) {
+        this.reviews.remove(review);
+    }
 }
