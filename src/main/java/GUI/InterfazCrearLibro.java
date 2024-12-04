@@ -94,17 +94,21 @@ public class InterfazCrearLibro extends JFrame {
 
         // Acción para guardar el libro
         btnGuardar.addActionListener(e -> {
-            String titulo = campoTitulo.getText();
-            String autor = campoAutor.getText();
-            String isbn = campoISBN.getText();
-            int anio = Integer.parseInt(campoAnio.getText());
-            String editorial = campoEditorial.getText();
+            try {
+                String titulo = campoTitulo.getText();
+                String autor = campoAutor.getText();
+                String isbn = campoISBN.getText();
+                int anio = Integer.parseInt(campoAnio.getText());
+                String editorial = campoEditorial.getText();
 
-            biblioteca.crearLibro(new Libro(titulo, autor, isbn, editorial, anio));
+                biblioteca.crearLibro(new Libro(titulo, autor, isbn, editorial, anio));
 
-            JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
-            setVisible(false);
-            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
+                JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
+                setVisible(false);
+                new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "El año debe ser un número entero."); //Añado esto porque se produce un error si el año no es un número.
+            }
         });
 
         // Acción para volver al frame principal
