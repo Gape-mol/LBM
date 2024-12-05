@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 
 public class Libro {
@@ -79,7 +81,7 @@ public class Libro {
         this.reviews.add(review);
     }
 
-    //Busco la review por Usuario, ya que en teoria solo deberia haber una review por usuario
+    //Busco la review por Model.Usuario, ya que en teoria solo deberia haber una review por usuario
     public Review buscarReview(Usuario usuario) {
         for (Review review : this.reviews) {
             if (review.getUsuario().equals(usuario)) {

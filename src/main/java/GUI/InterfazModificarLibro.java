@@ -1,7 +1,9 @@
+package GUI;
+
+import Model.Biblioteca;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class InterfazModificarLibro extends JFrame {
 
@@ -51,7 +53,7 @@ public class InterfazModificarLibro extends JFrame {
             int anio = Integer.parseInt(campoAnio.getText());
             String editorial = campoEditorial.getText();
 
-            biblioteca.modificarLibro(isbn, titulo, autor, isbn, editorial, anio);
+            biblioteca.modificarLibro(titulo, autor, isbn, editorial, anio);
 
             JOptionPane.showMessageDialog(null, "Libro modificado correctamente.");
             setVisible(false);

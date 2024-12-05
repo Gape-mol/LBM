@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class Historial {
     }
 
     public void mostrarHistorial() {
-        System.out.println("Historial de Préstamos:");
+        System.out.println("Model.Historial de Préstamos:");
         if (historialPrestamos.isEmpty()) {
             System.out.println("No hay préstamos registrados.");
             return;
@@ -26,7 +28,7 @@ public class Historial {
     }
 
     public void mostrarHistorialPorUsuario(Usuario usuario) {
-        System.out.println("Historial de Préstamos de " + usuario.getNombre() + ":");
+        System.out.println("Model.Historial de Préstamos de " + usuario.getNombre() + ":");
         List<Prestamo> prestamosUsuario = usuario.getPrestamos();
 
         if (prestamosUsuario.isEmpty()) {

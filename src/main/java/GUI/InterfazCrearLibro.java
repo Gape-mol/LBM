@@ -1,7 +1,10 @@
+package GUI;
+
+import Model.Biblioteca;
+import Model.Libro;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class InterfazCrearLibro extends JFrame {
 
@@ -51,7 +54,7 @@ public class InterfazCrearLibro extends JFrame {
             int anio = Integer.parseInt(campoAnio.getText());
             String editorial = campoEditorial.getText();
 
-            biblioteca.crearLibro(titulo, autor, isbn, editorial, anio);
+            biblioteca.crearLibro(new Libro(titulo, autor, isbn, editorial, anio));
 
             JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
             setVisible(false);

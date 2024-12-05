@@ -1,7 +1,9 @@
+package GUI;
+
+import Model.Biblioteca;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class InterfazEliminarLibro extends JFrame {
 
