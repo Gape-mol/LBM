@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.GestorDeArchivos;
 import Model.Biblioteca;
 import Model.Usuario;
 
@@ -99,6 +100,13 @@ public class InterfazPrincipal extends JFrame {
                 }
             }
         });
+
+        GestorDeArchivos gestor = new GestorDeArchivos();
+        if (gestor.guardarBiblioteca(this.biblioteca)) {
+            System.out.println("Informacion guardada");
+        } else {
+            System.out.println("Error al guardar");
+        }
 
         // Acción para agregar review
         btnAgregarReview.addActionListener(new ActionListener() {

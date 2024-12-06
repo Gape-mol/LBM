@@ -2,18 +2,17 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class Biblioteca {
 
     private String nombre;
     private String direccion;
-    private List<Libro> libros;
+    private ArrayList<Libro> libros;
 
     public Biblioteca(String nombre, String direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
-        this.libros = new ArrayList<>();
+        this.libros = new ArrayList<Libro>();
     }
     public String getNombre() {
         return this.nombre;
@@ -31,18 +30,20 @@ public class Biblioteca {
         this.direccion = direccion;
     }
 
-    public List<Libro> getLibros() {
+    public ArrayList<Libro> getLibros() {
         return this.libros;
     }
-    public void setLibros(List<Libro> libros) {
+    public void setLibros(ArrayList<Libro> libros) {
         this.libros = libros;
     }
 
     public void crearLibro(Libro newLibro) {
-        for (Libro libro : libros) {
-            if (libro.getIsbn().equals(newLibro.getIsbn())) {
-                System.out.println("El ISBN de este libro ya está asignado a otro libro.");
-                return;
+        if (!libros.isEmpty()) { //Esto de aqui asumo que existe para ahorrar recursos si la Array esta vacia -G
+            for (Libro libro : libros) {
+                if (libro.getIsbn().equals(newLibro.getIsbn())) {
+                    System.out.println("El ISBN de este libro ya está asignado a otro libro.");
+                    return;
+                }
             }
         }
         libros.add(newLibro);
@@ -52,11 +53,6 @@ public class Biblioteca {
     public void modificarLibro( String newTitulo,String newAutor, String newIsbn,String neweditorial, int newYear  ){
         for(Libro libro : libros){
             if(libro.getIsbn().equals(newIsbn)){
-                System.out.println("El ISBN que quieres asignar ya pertenece a otro libro");
-            } else if (libro.getTitulo().equals(newTitulo)) {
-                System.out.println("El titulo que quieres asignar ya existe prueba con otro titulo");
-
-            }else{
                 libro.setTitulo(newTitulo);
                 libro.setAutor(newAutor);
                 libro.setIsbn(newIsbn);
