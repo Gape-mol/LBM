@@ -25,10 +25,12 @@ public class InterfazEliminarReview extends JFrame {
         JLabel labelIsbn = new JLabel("ISBN del libro:");
         JTextField campoIsbn = new JTextField(20);
         JButton btnEliminar = new JButton("Eliminar Reseña");
+        JButton btnVolver = new JButton("Volver");
 
         add(labelIsbn);
         add(campoIsbn);
         add(btnEliminar);
+        add(btnVolver);
 
         btnEliminar.addActionListener(e -> {
             String isbn = campoIsbn.getText();
@@ -46,6 +48,11 @@ public class InterfazEliminarReview extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "El libro no se encontró.");
             }
+        });
+
+        btnVolver.addActionListener(e -> {
+            dispose();
+            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
         });
     }
 }
