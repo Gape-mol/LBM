@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.GestorDeArchivos;
 import Model.Biblioteca;
 
 import javax.swing.*;
@@ -79,14 +80,22 @@ public class InterfazPrincipal extends JFrame {
         // Acción para mostrar biblioteca completa
         btnMostrarBiblioteca.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { //Hay un error en esta funcion,
                 // Mostrar la ventana para mostrar la biblioteca
-                InterfazMostrarBiblioteca mostrarBibliotecaFrame = new InterfazMostrarBiblioteca(biblioteca);  // Pasar la instancia de Biblioteca
+                InterfazMostrarBiblioteca mostrarBibliotecaFrame = new InterfazMostrarBiblioteca(biblioteca);// Pasar la instancia de Biblioteca
+                mostrarBibliotecaFrame.setVisible(true);
                 if (mostrarBibliotecaFrame.isVisible()) { // Solo oculta la principal si la nueva ventana se muestra
                     setVisible(false);
                 }
             }
         });
+
+        GestorDeArchivos gestor = new GestorDeArchivos();
+        if (gestor.guardarBiblioteca(this.biblioteca)) {
+            System.out.println("Informacion guardada");
+        } else {
+            System.out.println("Error al guardar");
+        }
     }
 
     public static void main(String[] args) {
