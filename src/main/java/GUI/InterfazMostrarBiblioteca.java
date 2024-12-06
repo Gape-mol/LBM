@@ -6,6 +6,7 @@ import Model.Libro;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class InterfazMostrarBiblioteca extends JFrame {
 
@@ -26,14 +27,14 @@ public class InterfazMostrarBiblioteca extends JFrame {
 
         JButton btnVolver = new JButton("Volver");
 
+        List<Libro> libros = biblioteca.getLibros(); // Obtener la lista de libros
+
         // Mostrar los libros
-        try {
-            if (biblioteca.getLibros().isEmpty() || biblioteca.getLibros() == null) { // Esta funcion no puede funcionar si no hay una lista de libros
+            if (libros.isEmpty() || libros == null) { // Esta funcion no puede funcionar si no hay una lista de libros
                 areaLibros.setText("La biblioteca está vacía, no hay libros por mostrar.");
-                throw new NullPointerException();
             } else {
                 StringBuilder librosInfo = new StringBuilder();
-                for (Libro libro : biblioteca.getLibros()) {
+                for (Libro libro : libros) {
                     librosInfo.append("Título: ").append(libro.getTitulo())
                             .append("\nAutor: ").append(libro.getAutor())
                             .append("\nISBN: ").append(libro.getIsbn())
@@ -43,11 +44,6 @@ public class InterfazMostrarBiblioteca extends JFrame {
                 }
                 areaLibros.setText(librosInfo.toString());
             }
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null,"No hay libros en la biblioteca." , "Error", JOptionPane.WARNING_MESSAGE);
-            dispose(); // Cierra esta ventana
-            return;
-        }
 
         add(scrollPane, BorderLayout.CENTER);
         add(btnVolver, BorderLayout.SOUTH);

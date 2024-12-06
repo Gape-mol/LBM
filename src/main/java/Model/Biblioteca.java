@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Biblioteca {
 
@@ -37,7 +38,7 @@ public class Biblioteca {
     }
 
     public void crearLibro(Libro newLibro) {
-        if (!libros.isEmpty()) {
+        if (!libros.isEmpty()) { //Esto de aqui asumo que existe para ahorrar recursos si la Array esta vacia -G
             for (Libro libro : libros) {
                 if (libro.getIsbn().equals(newLibro.getIsbn())) {
                     System.out.println("El ISBN de este libro ya está asignado a otro libro.");
@@ -62,26 +63,38 @@ public class Biblioteca {
     }
 
     public void eliminarLibroPorIsbn(String isbn){
-        for(Libro libro : libros){
+        //Cambio del for each por un iterador para evitar la excepcion de concurrencia al eliminar un libro
+        Iterator<Libro> iterator = libros.iterator();
+        boolean encontrado = false;
+
+        while(iterator.hasNext()){
+            Libro libro = iterator.next();
             if(libro.getIsbn().equals(isbn)){
-                libros.remove(libro);
-            }else{
-                System.out.println("Este ISBN"+libro.getIsbn()+" no esta asignado a ningun libro existente");
+                iterator.remove();
+                encontrado = true;
+                System.out.println("Model.Libro eliminado correctamente.");
+                break;
             }
+        }
+        if(!encontrado){
+            System.out.println("El libro no fue encontrado, ningun ISBN registrado en la base de datos de la biblioteca coinside con el ISBN: "+isbn+" proporcionado");
         }
     }
 
-    public void buscarLibroPorIsbn(String isbn){
-        for(Libro libro : libros){
-            if(libro.getIsbn().equals(isbn)){
-                System.out.println("Datos del Model.Libro:...\n | Titulo: "+libro.getTitulo()+"| Autor: "+libro.getAutor()+"| ISBN: "+libro.getIsbn()+" | Año de publicacion: "+libro.getYear());
-                break;
-            }else{
-                System.out.println("El libro no fue encontrado, ningun ISBN registrado en la base de datos de la biblioteca coinside con el ISBN: "+libro.getIsbn()+" proporcionado");
+    public Libro buscarLibroPorIsbn(String isbn) {
+        for (Libro libro : libros) {
+            if (libro.getIsbn().equals(isbn)) {
+                // Mostramos los datos del libro encontrado
+                System.out.println("Datos del libro:\n | Titulo: " + libro.getTitulo() +
+                        " | Autor: " + libro.getAutor() +
+                        " | ISBN: " + libro.getIsbn() +
+                        " | Año de publicación: " + libro.getYear());
+                return libro; // Retorna el libro encontrado
             }
-
         }
-
+        // Si no se encuentra ningún libro
+        System.out.println("El libro con ISBN " + isbn + " no fue encontrado.");
+        return null; // Retorna null si no se encuentra el libro
     }
     public void mostrarBibliotecaCompleta() {
         if (libros != null && !libros.isEmpty()) {

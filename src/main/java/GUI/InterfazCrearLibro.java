@@ -17,7 +17,7 @@ public class InterfazCrearLibro extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new FlowLayout());
+        //Elimine el flowLayout por como posiciona los objetos ya que desde autor que se descuadran los objetos.
 
         JLabel labelTitulo = new JLabel("Título:");
         JTextField campoTitulo = new JTextField(20);
@@ -33,32 +33,82 @@ public class InterfazCrearLibro extends JFrame {
         JButton btnGuardar = new JButton("Guardar");
         JButton btnVolver = new JButton("Volver");
 
-        add(labelTitulo);
-        add(campoTitulo);
-        add(labelAutor);
-        add(campoAutor);
-        add(labelISBN);
-        add(campoISBN);
-        add(labelAnio);
-        add(campoAnio);
-        add(labelEditorial);
-        add(campoEditorial);
-        add(btnGuardar);
-        add(btnVolver);
+        JPanel panel = new JPanel();
+        GroupLayout layout = new GroupLayout(panel);
+        panel.setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+
+        layout.setHorizontalGroup(
+                layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(labelTitulo)
+                                .addComponent(labelAutor)
+                                .addComponent(labelISBN)
+                                .addComponent(labelAnio)
+                                .addComponent(labelEditorial)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(campoTitulo)
+                                .addComponent(campoAutor)
+                                .addComponent(campoISBN)
+                                .addComponent(campoAnio)
+                                .addComponent(campoEditorial)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnVolver)
+                                        .addComponent(btnGuardar)
+                                )
+                        )
+        );
+
+        layout.setVerticalGroup(
+                layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelTitulo)
+                                .addComponent(campoTitulo)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelAutor)
+                                .addComponent(campoAutor)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelISBN)
+                                .addComponent(campoISBN)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelAnio)
+                                .addComponent(campoAnio)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelEditorial)
+                                .addComponent(campoEditorial)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnVolver)
+                                .addComponent(btnGuardar)
+                        )
+        );
+
+        // Agregar el panel al frame
+        add(panel);
 
         // Acción para guardar el libro
         btnGuardar.addActionListener(e -> {
-            String titulo = campoTitulo.getText();
-            String autor = campoAutor.getText();
-            String isbn = campoISBN.getText();
-            int anio = Integer.parseInt(campoAnio.getText());
-            String editorial = campoEditorial.getText();
+            try {
+                String titulo = campoTitulo.getText();
+                String autor = campoAutor.getText();
+                String isbn = campoISBN.getText();
+                int anio = Integer.parseInt(campoAnio.getText());
+                String editorial = campoEditorial.getText();
 
-            biblioteca.crearLibro(new Libro(titulo, autor, isbn, editorial, anio));
+                biblioteca.crearLibro(new Libro(titulo, autor, isbn, editorial, anio));
 
-            JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
-            setVisible(false);
-            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
+                JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
+                setVisible(false);
+                new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "El año debe ser un número entero."); //Añado esto porque se produce un error si el año no es un número.
+            }
         });
 
         // Acción para volver al frame principal
@@ -66,5 +116,7 @@ public class InterfazCrearLibro extends JFrame {
             setVisible(false);
             new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
         });
+
+        //Se puede poner un pack(); para ajustar automaticamente el tamaño de la ventana, pero considerando que hay un tamaño fijo, no es necesario.
     }
 }
