@@ -3,6 +3,7 @@ package GUI;
 import Data.GestorDeArchivos;
 import Model.Biblioteca;
 import Model.Usuario;
+import Model.UsuarioConectado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 public class InterfazPrincipal extends JFrame {
 
     private Biblioteca biblioteca;  // Instancia de la clase Biblioteca
-    private Usuario usuario;  // Instancia de la clase Usuario (Se necesita para las reviews y estaba  contemplado que hay que crear una pantalla de login)
+    private Usuario usuario = UsuarioConectado.getUsuario();  // Instancia de la clase Usuario (Se necesita para las reviews y estaba  contemplado que hay que crear una pantalla de login)
 
     public InterfazPrincipal(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;  // Inicializa la biblioteca
@@ -32,7 +33,10 @@ public class InterfazPrincipal extends JFrame {
         JButton btnModificarReview = new JButton("Modificar Reseña");
         JButton btnEliminarReview = new JButton("Eliminar Reseña");
         JButton btnMostarReviews = new JButton("Mostrar Reseñas");
+        JLabel labelUsuario = new JLabel("Usuario logueado: " + (usuario != null ? usuario.getNombre() : "Ninguno"));
 
+
+        add(labelUsuario);
         add(btnCrearLibro);
         add(btnModificarLibro);
         add(btnEliminarLibro);
@@ -151,6 +155,7 @@ public class InterfazPrincipal extends JFrame {
         });
     }
 
+    /*
     public static void main(String[] args) {
         // Crear una instancia de la biblioteca
         Biblioteca biblioteca = new Biblioteca("Biblioteca Central", "Calle Ficticia 123");
@@ -161,5 +166,5 @@ public class InterfazPrincipal extends JFrame {
             principal.setVisible(true);
         });
     }
-
+    */ //Este main no es necesario ya que se ejecuta desde la clase Main
 }
