@@ -9,5 +9,4 @@ public class LBM {
         InterfazInicioDeSesion loginFrame = new InterfazInicioDeSesion();
         loginFrame.setVisible(true);
     }
-
 }

@@ -23,8 +23,6 @@ public class InterfazMostrarReview extends JFrame {
         JTextField campoIsbn = new JTextField(20);
         JButton btnMostrar = new JButton("Mostrar Reseñas");
         JTextArea areaReseñas = new JTextArea(10, 30);
-
-        JButton btnVolver = new JButton("Volver");
         areaReseñas.setEditable(false);  // Solo lectura para mostrar las reseñas
 
         // Agregar los componentes a la interfaz
@@ -32,7 +30,6 @@ public class InterfazMostrarReview extends JFrame {
         add(campoIsbn);
         add(btnMostrar);
         add(new JScrollPane(areaReseñas));  // Usamos JScrollPane para agregar scroll al JTextArea
-        add(btnVolver);
 
         btnMostrar.addActionListener(e -> {
             String isbn = campoIsbn.getText();
@@ -54,11 +51,6 @@ public class InterfazMostrarReview extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "El libro no se encontró.");
             }
-        });
-
-        btnVolver.addActionListener(e -> {
-            dispose();
-            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
         });
     }
 }
