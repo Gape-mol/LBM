@@ -8,6 +8,7 @@ public class Usuario {
     private ArrayList<Prestamo> prestamos;
     private ArrayList<Reserva> reservas;
     private ArrayList<Multa> multas;
+    private boolean administrador; //Esto lo añadire para permitir que solo los administradores puedas crear libros, usuarios, etc.
 
     //Constructor
     public Usuario(String nombre, int identificacion) {
@@ -16,6 +17,7 @@ public class Usuario {
         this.prestamos = new ArrayList<Prestamo>();
         this.reservas = new ArrayList<Reserva>();
         this.multas = new ArrayList<Multa>();
+        this.administrador = false;
     }
 
     //Getters
@@ -39,6 +41,10 @@ public class Usuario {
         return this.multas;
     }
 
+    public boolean getAdministrador() {
+        return this.administrador;
+    }
+
     //Setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -58,6 +64,10 @@ public class Usuario {
 
     public void setMultas(ArrayList<Multa> multas) {
         this.multas = multas;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
     }
 
     //Métodos

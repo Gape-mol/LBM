@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Prestamo {
 
@@ -44,6 +45,15 @@ public class Prestamo {
 	 */
 	public void setFechaDevolucion(Date fechaDebolucion) {
 		this.fechaDevolucion = fechaDebolucion;
+	}
+
+	@Override
+	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return "Libro: " + libro.getTitulo() + " | " +
+				"Autor: " + libro.getAutor() + " | " +
+				"Fecha de Préstamo: " + sdf.format(fechaPrestamo) + " | " +
+				"Fecha de Devolución: " + sdf.format(fechaDevolucion);
 	}
 
 }

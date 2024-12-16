@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InterfazModificarReview extends JFrame {
+
     private Biblioteca biblioteca;
     private Usuario usuario;
 
@@ -17,45 +18,129 @@ public class InterfazModificarReview extends JFrame {
         this.usuario = usuario;
 
         setTitle("Modificar Reseña");
-        setSize(400, 300);
+        setSize(400, 350);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new FlowLayout());
 
-        JLabel labelIsbn = new JLabel("ISBN del libro:");
-        JTextField campoIsbn = new JTextField(20);
-        JLabel labelTexto = new JLabel("Nuevo texto de reseña:");
-        JTextArea campoTexto = new JTextArea(5, 20);
-        JLabel labelCalificacion = new JLabel("Nueva calificación:");
-        JComboBox<Integer> comboCalificacion = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
-        JButton btnModificar = new JButton("Modificar Reseña");
+        JLabel labelISBN = new JLabel("ISBN del libro:");
+        JTextField campoISBN = new JTextField(20);
+        JLabel labelTextoReseña = new JLabel("Nuevo texto de reseña:");
+        JTextArea areaReseña = new JTextArea(5, 20);
+        JScrollPane scrollPane = new JScrollPane(areaReseña);
+        JLabel labelCalificacion = new JLabel("Nueva Calificación:");
 
-        add(labelIsbn);
-        add(campoIsbn);
-        add(labelTexto);
-        add(campoTexto);
-        add(labelCalificacion);
-        add(comboCalificacion);
-        add(btnModificar);
+        // Botones de calificación
+        ButtonGroup grupoCalificacion = new ButtonGroup();
+        JRadioButton calificacion1 = new JRadioButton("1");
+        JRadioButton calificacion2 = new JRadioButton("2");
+        JRadioButton calificacion3 = new JRadioButton("3");
+        JRadioButton calificacion4 = new JRadioButton("4");
+        JRadioButton calificacion5 = new JRadioButton("5");
 
-        btnModificar.addActionListener(e -> {
-            String isbn = campoIsbn.getText();
-            String texto = campoTexto.getText();
-            int calificacion = (Integer) comboCalificacion.getSelectedItem();
+        grupoCalificacion.add(calificacion1);
+        grupoCalificacion.add(calificacion2);
+        grupoCalificacion.add(calificacion3);
+        grupoCalificacion.add(calificacion4);
+        grupoCalificacion.add(calificacion5);
+
+        JPanel panelCalificacion = new JPanel();
+        panelCalificacion.add(calificacion1);
+        panelCalificacion.add(calificacion2);
+        panelCalificacion.add(calificacion3);
+        panelCalificacion.add(calificacion4);
+        panelCalificacion.add(calificacion5);
+
+        JButton btnModificarReseña = new JButton("Modificar Reseña");
+        JButton btnVolver = new JButton("Volver");
+
+        JPanel panel = new JPanel();
+        GroupLayout layout = new GroupLayout(panel);
+        panel.setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+
+        layout.setHorizontalGroup(
+                layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(labelISBN)
+                                .addComponent(labelTextoReseña)
+                                .addComponent(labelCalificacion)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(campoISBN)
+                                .addComponent(scrollPane)
+                                .addComponent(panelCalificacion)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnVolver)
+                                        .addComponent(btnModificarReseña)
+                                )
+                        )
+        );
+
+        layout.setVerticalGroup(
+                layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelISBN)
+                                .addComponent(campoISBN)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(labelTextoReseña)
+                                .addComponent(scrollPane)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelCalificacion)
+                                .addComponent(panelCalificacion)
+                        )
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnVolver)
+                                .addComponent(btnModificarReseña)
+                        )
+        );
+
+        add(panel);
+
+        // Acción para modificar la reseña
+        btnModificarReseña.addActionListener(e -> {
+            String isbn = campoISBN.getText().trim();
+            String textoReseña = areaReseña.getText().trim();
+            int calificacion = -1;
+
+            if (isbn.isEmpty() || textoReseña.isEmpty() || grupoCalificacion.getSelection() == null) {
+                JOptionPane.showMessageDialog(this, "Por favor, rellena todos los campos y selecciona una calificación.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (calificacion1.isSelected()) calificacion = 1;
+            else if (calificacion2.isSelected()) calificacion = 2;
+            else if (calificacion3.isSelected()) calificacion = 3;
+            else if (calificacion4.isSelected()) calificacion = 4;
+            else if (calificacion5.isSelected()) calificacion = 5;
+
+            // Buscar el libro por ISBN
             Libro libro = biblioteca.buscarLibroPorIsbn(isbn);
 
             if (libro != null) {
+                // Buscar y modificar la reseña
                 Review review = libro.buscarReview(usuario);
                 if (review != null) {
-                    review.editarReseña(texto, calificacion);
-                    JOptionPane.showMessageDialog(this, "Reseña modificada exitosamente.");
-                    setVisible(false);
+                    review.editarReseña(textoReseña, calificacion);
+
+                    JOptionPane.showMessageDialog(this, "Reseña modificada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    campoISBN.setText("");
+                    areaReseña.setText("");
+                    grupoCalificacion.clearSelection();
                 } else {
-                    JOptionPane.showMessageDialog(this, "No has escrito una reseña para este libro.");
+                    JOptionPane.showMessageDialog(this, "No se encontró una reseña tuya para este libro.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "El libro no se encontró.");
+                JOptionPane.showMessageDialog(this, "No se encontró un libro con ese ISBN.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        });
+
+        // Acción para volver al menú principal
+        btnVolver.addActionListener(e -> {
+            setVisible(false);
+            new InterfazPrincipal(biblioteca).setVisible(true);
         });
     }
 }

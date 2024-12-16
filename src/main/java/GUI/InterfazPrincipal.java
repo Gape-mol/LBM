@@ -1,6 +1,5 @@
 package GUI;
 
-import Data.GestorDeArchivos;
 import Model.Biblioteca;
 import Model.Usuario;
 
@@ -32,6 +31,8 @@ public class InterfazPrincipal extends JFrame {
         JButton btnModificarReview = new JButton("Modificar Reseña");
         JButton btnEliminarReview = new JButton("Eliminar Reseña");
         JButton btnMostarReviews = new JButton("Mostrar Reseñas");
+        JButton btnHistorial = new JButton("Mostrar Historial");
+        JButton btnPrestamo = new JButton("Realizar Prestamo");
 
         add(btnCrearLibro);
         add(btnModificarLibro);
@@ -42,6 +43,8 @@ public class InterfazPrincipal extends JFrame {
         add(btnModificarReview);
         add(btnEliminarReview);
         add(btnMostarReviews);
+        add(btnHistorial);
+        add(btnPrestamo);
 
         // Acción para crear libro
         btnCrearLibro.addActionListener(new ActionListener() {
@@ -101,13 +104,6 @@ public class InterfazPrincipal extends JFrame {
             }
         });
 
-        GestorDeArchivos gestor = new GestorDeArchivos();
-        if (gestor.guardarBiblioteca(this.biblioteca)) {
-            System.out.println("Informacion guardada");
-        } else {
-            System.out.println("Error al guardar");
-        }
-
         // Acción para agregar review
         btnAgregarReview.addActionListener(new ActionListener() {
             @Override
@@ -149,11 +145,32 @@ public class InterfazPrincipal extends JFrame {
                 setVisible(false);  // Ocultar la ventana principal
             }
         });
+
+        btnHistorial.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Mostrar la ventana para mostrar el historial de préstamos
+                InterfazHistorial historialPrestamosFrame = new InterfazHistorial(biblioteca, usuario);
+                historialPrestamosFrame.setVisible(true);
+                setVisible(false);  // Ocultar la ventana principal
+            }
+        });
+
+        // Acción para gestionar préstamos
+        btnPrestamo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfazPrestamo gestionarPrestamosFrame = new InterfazPrestamo(biblioteca, usuario); // Pasar la instancia de Biblioteca y Usuario
+                gestionarPrestamosFrame.setVisible(true);
+                setVisible(false); // Ocultar la ventana principal
+            }
+        });
     }
 
     public static void main(String[] args) {
         // Crear una instancia de la biblioteca
         Biblioteca biblioteca = new Biblioteca("Biblioteca Central", "Calle Ficticia 123");
+        Usuario usuario1 = new Usuario("Usuario", 21345);
 
         // Ejecutar la interfaz principal con la biblioteca creada
         SwingUtilities.invokeLater(() -> {
@@ -161,5 +178,4 @@ public class InterfazPrincipal extends JFrame {
             principal.setVisible(true);
         });
     }
-
 }
