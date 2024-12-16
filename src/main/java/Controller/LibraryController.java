@@ -79,7 +79,7 @@ public class LibraryController {
         return null;
     }
 
-    public void realizarReserva(int numeroReserva, Usuario usuario, Libro libro, Date fechaReserva) {
+    public void realizarReserva(String numeroReserva, Usuario usuario, Libro libro, Date fechaReserva) {
         Reserva reserva = new Reserva(numeroReserva, usuario, libro, fechaReserva);
         usuario.agregarReserva(reserva);
     }

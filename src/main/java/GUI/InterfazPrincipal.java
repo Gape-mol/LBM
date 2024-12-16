@@ -33,6 +33,9 @@ public class InterfazPrincipal extends JFrame {
         JButton btnMostarReviews = new JButton("Mostrar Reseñas");
         JButton btnHistorial = new JButton("Mostrar Historial");
         JButton btnPrestamo = new JButton("Realizar Prestamo");
+        JButton btnReserva = new JButton("Realizar Reserva");
+        JButton btnEstadoReserva = new JButton("Ver Estado de Reserva");
+        JButton btnVerReservas = new JButton("Ver Todas las Reservas");
 
         add(btnCrearLibro);
         add(btnModificarLibro);
@@ -45,6 +48,9 @@ public class InterfazPrincipal extends JFrame {
         add(btnMostarReviews);
         add(btnHistorial);
         add(btnPrestamo);
+        add(btnReserva);
+        add(btnEstadoReserva);
+        add(btnVerReservas);
 
         // Acción para crear libro
         btnCrearLibro.addActionListener(new ActionListener() {
@@ -163,6 +169,36 @@ public class InterfazPrincipal extends JFrame {
                 InterfazPrestamo gestionarPrestamosFrame = new InterfazPrestamo(biblioteca, usuario); // Pasar la instancia de Biblioteca y Usuario
                 gestionarPrestamosFrame.setVisible(true);
                 setVisible(false); // Ocultar la ventana principal
+            }
+        });
+
+        // Acción para gestionar reservas
+        btnReserva.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfazReserva hacerReservaFrame = new InterfazReserva(biblioteca, usuario);
+                hacerReservaFrame.setVisible(true);
+                setVisible(false);
+            }
+        });
+
+        // Acción para ver las reservas
+        btnEstadoReserva.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfazEstadoReserva verReservaFrame = new InterfazEstadoReserva(biblioteca, usuario);
+                verReservaFrame.setVisible(true);
+                setVisible(false);
+            }
+        });
+
+        //Acción para ver todas las reservas del usuario
+        btnVerReservas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfazVerReservas verReservasFrame = new InterfazVerReservas(biblioteca, usuario);
+                verReservasFrame.setVisible(true);
+                setVisible(false);
             }
         });
     }

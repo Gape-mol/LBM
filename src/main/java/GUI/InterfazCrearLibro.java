@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.GestorDeArchivos;
 import Model.Biblioteca;
 import Model.Libro;
 
@@ -102,6 +103,10 @@ public class InterfazCrearLibro extends JFrame {
                 String editorial = campoEditorial.getText();
 
                 biblioteca.crearLibro(new Libro(titulo, autor, isbn, editorial, anio));
+
+                GestorDeArchivos gestor = new GestorDeArchivos();
+
+                gestor.guardarBiblioteca(biblioteca);
 
                 JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
                 setVisible(false);
