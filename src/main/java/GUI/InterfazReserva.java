@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.GestorDeArchivos;
 import Model.*;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class InterfazReserva extends JFrame {
@@ -18,9 +20,9 @@ public class InterfazReserva extends JFrame {
     private JTextField txtFecha;
     private JTextField txtLibro;
 
-    public InterfazReserva(Biblioteca biblioteca, Usuario usuario) {
+    public InterfazReserva(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
-        this.usuario = usuario;
+        this.usuario = UsuarioConectado.getUsuario();
 
         setTitle("Gestionar Reservas");
         setSize(400, 300);
@@ -58,6 +60,20 @@ public class InterfazReserva extends JFrame {
                         Reserva reserva = new Reserva(obtenerIdentificador() , usuario, libro, fecha);
                         usuario.agregarReserva(reserva);
                         JOptionPane.showMessageDialog(null, "Reserva realizada con éxito!");
+
+                        GestorDeArchivos gestor = new GestorDeArchivos();
+                        ArrayList<Usuario> usuarios = gestor.cargarUsuarios();
+
+                        for (Usuario u : usuarios) {
+                            if (u == usuario) {
+                                usuario.agregarReserva(reserva);
+                                usuarios.remove(u);
+                                usuarios.add(usuario);
+
+                                gestor.guardarUsuarios(usuarios);
+
+                            }
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Libro no encontrado.");
                     }

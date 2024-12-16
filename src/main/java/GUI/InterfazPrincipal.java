@@ -176,7 +176,7 @@ public class InterfazPrincipal extends JFrame {
         btnReserva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InterfazReserva hacerReservaFrame = new InterfazReserva(biblioteca, usuario);
+                InterfazReserva hacerReservaFrame = new InterfazReserva(biblioteca);
                 hacerReservaFrame.setVisible(true);
                 setVisible(false);
             }
@@ -186,7 +186,7 @@ public class InterfazPrincipal extends JFrame {
         btnEstadoReserva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InterfazEstadoReserva verReservaFrame = new InterfazEstadoReserva(biblioteca, usuario);
+                InterfazEstadoReserva verReservaFrame = new InterfazEstadoReserva(biblioteca);
                 verReservaFrame.setVisible(true);
                 setVisible(false);
             }
@@ -196,7 +196,7 @@ public class InterfazPrincipal extends JFrame {
         btnVerReservas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InterfazVerReservas verReservasFrame = new InterfazVerReservas(biblioteca, usuario);
+                InterfazVerReservas verReservasFrame = new InterfazVerReservas(biblioteca);
                 verReservasFrame.setVisible(true);
                 setVisible(false);
             }

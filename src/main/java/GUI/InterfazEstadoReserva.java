@@ -15,8 +15,8 @@ public class InterfazEstadoReserva extends JFrame {
     private Usuario usuario;
     private Biblioteca biblioteca;
 
-    public InterfazEstadoReserva(Biblioteca biblioteca,Usuario usuario) {
-        this.usuario = usuario;
+    public InterfazEstadoReserva(Biblioteca biblioteca) {
+        this.usuario = UsuarioConectado.getUsuario();
         this.biblioteca = biblioteca;
 
         setTitle("Buscar Libro");

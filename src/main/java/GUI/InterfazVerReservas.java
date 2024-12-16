@@ -3,6 +3,7 @@ package GUI;
 import Model.Biblioteca;
 import Model.Reserva;
 import Model.Usuario;
+import Model.UsuarioConectado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +15,8 @@ public class InterfazVerReservas extends JFrame {
     private Usuario usuario;
     private Biblioteca biblioteca;
 
-    public InterfazVerReservas(Biblioteca biblioteca,Usuario usuario) {
-        this.usuario = usuario;
+    public InterfazVerReservas(Biblioteca biblioteca) {
+        this.usuario = UsuarioConectado.getUsuario();
         this.biblioteca = biblioteca;
 
         setTitle("Ver Reservas");

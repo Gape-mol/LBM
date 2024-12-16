@@ -1,5 +1,14 @@
 {
-  "nombre": "Biblioteca Central",
-  "direccion": "Calle Ficticia 123",
-  "libros": []
+  "nombre": "Biblioteca",
+  "direccion": "Calle 123",
+  "libros": [
+    {
+      "titulo": "Cien años de soledad",
+      "autor": "Gabriel García Márquez ",
+      "Isbn": "9780060883287",
+      "editorial": "HarperCollins",
+      "year": 1967,
+      "reviews": []
+    }
+  ]
 }
