@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.GestorDeArchivos;
 import Model.*;
 
 import javax.swing.*;
@@ -7,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -44,20 +46,26 @@ public class InterfazEstadoReserva extends JFrame {
             String numeroSolicitud = campoNumeroSolicitud.getText();
             boolean encontrado = false;
 
-            for (Reserva reserva : usuario.getReservas()) {
+            GestorDeArchivos gestor = new GestorDeArchivos();
+            ArrayList<Reserva> reservas = gestor.cargarReservas();
+
+            for (Reserva reserva : reservas) {
+
                 if (Objects.equals(reserva.getNumeroSolicitud(), numeroSolicitud)) {
                     Date fechaReserva = reserva.getFechaReserva();
-                    Date fechaActual = new Date();
+                    Date fechaActualSinFormatear = new Date();
+
+                    Date fechaActual = formatearFecha(fechaActualSinFormatear);
+
                     String respuesta = "";
-                    if (fechaReserva.before(fechaActual)) {
+                    if (fechaActual.before(fechaReserva)) {
                         respuesta = "El libro aun no se encuentra listo para realizar el prestamo";
-                    } else if (fechaReserva.equals(fechaActual)) {
+                    } else if (fechaActual.equals(fechaReserva)) {
                         respuesta = "El libro esta listo para retiro";
-                    } else if (fechaReserva.after(fechaActual)) {
+                    } else if (fechaActual.after(fechaReserva)) {
                         respuesta = "El libro ya no se encuentra reservado";
-                        ArrayList<Reserva> reservas= usuario.getReservas();
                         reservas.remove(reserva);
-                        usuario.setReservas(reservas);
+                        gestor.guardarReservas(reservas);
                     }
                     areaResultado.setText(respuesta);
                     encontrado = true;
@@ -75,5 +83,15 @@ public class InterfazEstadoReserva extends JFrame {
             setVisible(false);
             new InterfazPrincipal(biblioteca).setVisible(true);
         });
+    }
+
+    public Date formatearFecha(Date fecha){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fecha);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
     }
 }

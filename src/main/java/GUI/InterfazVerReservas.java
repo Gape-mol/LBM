@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.GestorDeArchivos;
 import Model.Biblioteca;
 import Model.Reserva;
 import Model.Usuario;
@@ -9,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class InterfazVerReservas extends JFrame {
 
@@ -31,7 +33,9 @@ public class InterfazVerReservas extends JFrame {
 
         JButton btnVolver = new JButton("Volver");
 
-        ArrayList<Reserva> reservas = usuario.getReservas(); // Obtener la lista de reservas
+        GestorDeArchivos gestor = new GestorDeArchivos();
+
+        ArrayList<Reserva> reservas = gestor.cargarReservas(); // Obtener la lista de reservas
 
         // Mostrar los libros
         if (reservas.isEmpty() || reservas == null) { // Esta funcion no puede funcionar si no hay una lista de reservas
@@ -39,6 +43,8 @@ public class InterfazVerReservas extends JFrame {
         } else {
             StringBuilder reservasInfo = new StringBuilder();
             for (Reserva reserva : reservas) {
+
+                if (Objects.equals(reserva.getUsuario(), usuario)) {}
                 reservasInfo.append("Numero de solicitud: ").append(reserva.getNumeroSolicitud())
                         .append("\nFecha de la reserva: ").append(reserva.getFechaReserva())
                         .append("\nLibro de la reserva ").append(reserva.getLibro().getTitulo())

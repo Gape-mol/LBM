@@ -11,7 +11,9 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class InterfazReserva extends JFrame {
 
@@ -55,27 +57,22 @@ public class InterfazReserva extends JFrame {
                     Date fecha = sdf.parse(txtFecha.getText());
                     String isbnLibro = txtLibro.getText();
 
+                    Date fechaFormateada = formatearFecha(fecha);
+
                     Libro libro = biblioteca.buscarLibroPorIsbn(isbnLibro); // Método para buscar libro en la biblioteca
                     if (libro != null) {
-                        Reserva reserva = new Reserva(obtenerIdentificador() , usuario, libro, fecha);
-                        usuario.agregarReserva(reserva);
+                        Reserva reserva = new Reserva(obtenerIdentificador() , usuario, libro, fechaFormateada);
                         JOptionPane.showMessageDialog(null, "Reserva realizada con éxito!");
 
                         GestorDeArchivos gestor = new GestorDeArchivos();
-                        ArrayList<Usuario> usuarios = gestor.cargarUsuarios();
+                        ArrayList<Reserva> reservas = gestor.cargarReservas();
 
-                        for (Usuario u : usuarios) {
-                            if (u == usuario) {
-                                usuario.agregarReserva(reserva);
-                                usuarios.remove(u);
-                                usuarios.add(usuario);
+                        reservas.add(reserva);
 
-                                gestor.guardarUsuarios(usuarios);
+                        gestor.guardarReservas(reservas);
 
-                            }
-                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Libro no encontrado.");
+                        JOptionPane.showMessageDialog(null, "Reserva no encontrada.");
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -111,5 +108,15 @@ public class InterfazReserva extends JFrame {
 
         return String.valueOf(identificacion);
 
+    }
+
+    public Date formatearFecha(Date fecha){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fecha);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
     }
 }

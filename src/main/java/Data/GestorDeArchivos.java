@@ -61,20 +61,30 @@ public class GestorDeArchivos {
         }
         return guardado;
     }
-//Funcion para verificar la integridad de los archivos del programa, entrega un falso "False"
-/*
-    public boolean verificarIntegridadArchivos(){
-        boolean verificado = true;
-        String[] archivos = {"Model.Biblioteca.java", "Libros.java", "Model.Review.java", "Model.Multa.java", "Model.Prestamo.java", "Model.Usuario.java", "Model.Reserva.java"};
-        for (String archivo : archivos){
 
-            File file = new File(System.getProperty("user.dir"),archivo);
-            System.out.println("Verificando: " + file.getAbsolutePath());
-            if (!file.exists()){
-                verificado = false;
-            }
+    public boolean guardarReservas(ArrayList<Reserva> reservas) {
+        boolean guardado = false;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter writer = new FileWriter("ReservasData.json")) {
+            gson.toJson(reservas, writer);
+            guardado = true;
+        } catch (IOException | JsonIOException e) {
+            guardado = false;
         }
-        return verificado;
+        return guardado;
     }
-*/
+
+    public ArrayList<Reserva> cargarReservas(){
+        Gson gson = new Gson();
+        ArrayList<Reserva> reservas = new ArrayList<>();
+
+        Type reservaListType = new TypeToken<ArrayList<Reserva>>() {}.getType();
+        try {
+            reservas = gson.fromJson(new FileReader("ReservasData.json"), reservaListType);
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontro el archivo");
+        }
+        return reservas;
+    }
+
 }

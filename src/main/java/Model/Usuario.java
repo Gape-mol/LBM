@@ -6,7 +6,6 @@ public class Usuario {
     private String nombre;
     private int identificacion;
     private ArrayList<Prestamo> prestamos;
-    private ArrayList<Reserva> reservas;
     private ArrayList<Multa> multas;
     private boolean administrador; //Esto lo añadire para permitir que solo los administradores puedas crear libros, usuarios, etc.
 
@@ -15,7 +14,6 @@ public class Usuario {
         this.nombre = nombre;
         this.identificacion = identificacion;
         this.prestamos = new ArrayList<Prestamo>();
-        this.reservas = new ArrayList<Reserva>();
         this.multas = new ArrayList<Multa>();
         this.administrador = false;
     }
@@ -33,9 +31,6 @@ public class Usuario {
         return this.prestamos;
     }
 
-    public ArrayList<Reserva> getReservas() {
-        return this.reservas;
-    }
 
     public ArrayList<Multa> getMultas() {
         return this.multas;
@@ -58,9 +53,6 @@ public class Usuario {
         this.prestamos = prestamos;
     }
 
-    public void setReservas(ArrayList<Reserva> reservas) {
-        this.reservas = reservas;
-    }
 
     public void setMultas(ArrayList<Multa> multas) {
         this.multas = multas;
@@ -76,10 +68,6 @@ public class Usuario {
         this.prestamos.add(prestamo);
     }
 
-    public void agregarReserva(Reserva reserva) {
-        this.reservas.add(reserva);
-    }
-
     public void agregarMulta(Multa multa) {
         this.multas.add(multa);
     }
@@ -88,9 +76,6 @@ public class Usuario {
         this.prestamos.remove(prestamo);
     }
 
-    public void eliminarReserva(Reserva reserva) {
-        this.reservas.remove(reserva);
-    }
 
     public void eliminarMulta(Multa multa) {
         this.multas.remove(multa);
@@ -102,11 +87,7 @@ public class Usuario {
         }
     }
 
-    public void mostrarReservas() {
-        for (Reserva reserva : this.reservas) {
-            System.out.println(reserva.toString());
-        }
-    }
+
 
     public void mostrarMultas() {
         for (Multa multa : this.multas) {

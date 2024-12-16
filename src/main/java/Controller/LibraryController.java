@@ -81,11 +81,11 @@ public class LibraryController {
 
     public void realizarReserva(String numeroReserva, Usuario usuario, Libro libro, Date fechaReserva) {
         Reserva reserva = new Reserva(numeroReserva, usuario, libro, fechaReserva);
-        usuario.agregarReserva(reserva);
+        //usuario.agregarReserva(reserva);
     }
 
     public void cancelarReserva(Usuario usuario, Reserva reserva) {
-        usuario.eliminarReserva(reserva);
+        //usuario.eliminarReserva(reserva);
     }
 
     public void aplicarMulta(Usuario usuario, int monto, Date fecha, String estado) {
