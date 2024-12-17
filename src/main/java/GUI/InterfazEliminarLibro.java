@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.GestorDeArchivos;
 import Model.Biblioteca;
 
 import javax.swing.*;
@@ -31,17 +32,38 @@ public class InterfazEliminarLibro extends JFrame {
         // Acción para eliminar el libro
         btnEliminar.addActionListener(e -> {
             String isbn = campoISBN.getText();
-            biblioteca.eliminarLibroPorIsbn(isbn);
+            boolean libroEliminado = eliminarLibroYGuardar(isbn);
 
-            JOptionPane.showMessageDialog(null, "Libro eliminado correctamente.");
+            if (libroEliminado) {
+                JOptionPane.showMessageDialog(null, "Libro eliminado correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró un libro con ese ISBN.");
+            }
+
             setVisible(false);
-            new InterfazPrincipal(biblioteca).setVisible(true);
+            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
         });
 
         // Acción para volver al frame principal
         btnVolver.addActionListener(e -> {
             setVisible(false);
-            new InterfazPrincipal(biblioteca).setVisible(true);
+            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
         });
     }
+
+    // Método para eliminar un libro por ISBN y guardar la biblioteca actualizada
+    private boolean eliminarLibroYGuardar(String isbn) {
+        // Iterar sobre los libros y eliminar el libro con el ISBN proporcionado
+        for (int i = 0; i < biblioteca.getLibros().size(); i++) {
+            if (biblioteca.getLibros().get(i).getIsbn().equals(isbn)) {
+                biblioteca.getLibros().remove(i);  // Elimina el libro de la lista
+                // Guardar la biblioteca después de la eliminación
+                GestorDeArchivos gestor = new GestorDeArchivos();
+                gestor.guardarBiblioteca(biblioteca);  // Guardar la biblioteca actualizada
+                return true;  // Libro eliminado
+            }
+        }
+        return false;  // No se encontró el libro con el ISBN
+    }
 }
+

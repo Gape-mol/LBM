@@ -1,7 +1,9 @@
 package GUI;
 
+import GUI.InterfazPrincipal;
 import Model.Biblioteca;
 import Model.Libro;
+import Data.GestorDeArchivos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -97,7 +99,7 @@ public class InterfazModificarLibro extends JFrame {
             Libro libro = biblioteca.buscarLibroPorIsbn(isbn);
 
             if (libro != null) {
-                // Si el libro existe, se pueden modificar los datos, excepto el ISBN
+                // Si el libro existe, se pueden modificar los datos
                 String titulo = campoTitulo.getText();
                 String autor = campoAutor.getText();
                 int year = 0;
@@ -109,13 +111,20 @@ public class InterfazModificarLibro extends JFrame {
                 }
                 String editorial = campoEditorial.getText();
 
-                // Llamar al método de modificación
-                biblioteca.modificarLibro(titulo, autor, isbn, editorial, year);
+                // Modificar los datos del libro
+                libro.setTitulo(titulo);
+                libro.setAutor(autor);
+                libro.setYear(year);
+                libro.setEditorial(editorial);
+
+                // Guardar la biblioteca actualizada en el archivo
+                GestorDeArchivos gestor = new GestorDeArchivos();
+                gestor.guardarBiblioteca(biblioteca);  // Sobrescribir el archivo con la biblioteca actualizada
 
                 // Mensaje de confirmación
                 JOptionPane.showMessageDialog(null, "Libro modificado correctamente.");
                 setVisible(false);
-                new InterfazPrincipal(biblioteca).setVisible(true);
+                new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
             } else {
                 // Si no se encuentra el libro, mostrar mensaje de error
                 JOptionPane.showMessageDialog(null, "No se encontró un libro con ese ISBN.");
@@ -125,8 +134,7 @@ public class InterfazModificarLibro extends JFrame {
         // Acción para volver al frame principal
         btnVolver.addActionListener(e -> {
             setVisible(false);
-            new InterfazPrincipal(biblioteca).setVisible(true);
+            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
         });
     }
 }
-
