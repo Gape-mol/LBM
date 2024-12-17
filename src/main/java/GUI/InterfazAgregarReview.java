@@ -4,6 +4,7 @@ import Model.Biblioteca;
 import Model.Libro;
 import Model.Review;
 import Model.Usuario;
+import Data.GestorDeArchivos; // Asegúrate de tener este import para usar el GestorDeArchivos
 
 import javax.swing.*;
 import java.awt.*;
@@ -123,6 +124,10 @@ public class InterfazAgregarReview extends JFrame {
                 // Crear y agregar la reseña
                 Review nuevaReseña = new Review(textoReseña, calificacion, usuario);
                 libro.agregarReview(nuevaReseña);
+
+                // Guardar los datos de la biblioteca con las nuevas reseñas
+                GestorDeArchivos gestor = new GestorDeArchivos();
+                gestor.guardarBiblioteca(biblioteca); // Guardar los cambios en el archivo
 
                 JOptionPane.showMessageDialog(this, "Reseña agregada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 campoISBN.setText("");
