@@ -77,14 +77,19 @@ public class Libro {
     }
 
     //Métodos
-    public void agregarReview(Review review) {
-        this.reviews.add(review);
+    public void agregarReview(Review review, Usuario usuario) {
+        Review reviewExistente = buscarReview(usuario);
+        if (reviewExistente == null) {
+            this.reviews.add(review);
+        } else {
+            System.out.println("Ya existe una review para este usuario.");
+        }
     }
 
     //Busco la review por Model.Usuario, ya que en teoria solo deberia haber una review por usuario
     public Review buscarReview(Usuario usuario) {
         for (Review review : this.reviews) {
-            if (review.getUsuario().equals(usuario)) {
+            if (review.getIdentificacion() == usuario.getIdentificacion()) {
                 return review;
             }
         }
