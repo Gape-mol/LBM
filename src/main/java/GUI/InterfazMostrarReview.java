@@ -6,6 +6,8 @@ import Model.Review;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InterfazMostrarReview extends JFrame {
     private Biblioteca biblioteca;
@@ -23,17 +25,14 @@ public class InterfazMostrarReview extends JFrame {
         JTextField campoIsbn = new JTextField(20);
         JButton btnMostrar = new JButton("Mostrar Reseñas");
         JTextArea areaReseñas = new JTextArea(10, 30);
-
-        JButton btnVolver = new JButton("Volver");
         areaReseñas.setEditable(false);  // Solo lectura para mostrar las reseñas
-
+        JButton btnVolver = new JButton("Volver");
         // Agregar los componentes a la interfaz
         add(labelIsbn);
         add(campoIsbn);
         add(btnMostrar);
         add(new JScrollPane(areaReseñas));  // Usamos JScrollPane para agregar scroll al JTextArea
         add(btnVolver);
-
         btnMostrar.addActionListener(e -> {
             String isbn = campoIsbn.getText();
             Libro libro = biblioteca.buscarLibroPorIsbn(isbn);
@@ -56,9 +55,14 @@ public class InterfazMostrarReview extends JFrame {
             }
         });
 
-        btnVolver.addActionListener(e -> {
-            dispose();
-            new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
+        // Acción para volver a la ventana principal
+        btnVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfazPrincipal principalFrame = new InterfazPrincipal(biblioteca);
+                principalFrame.setVisible(true);
+                setVisible(false);
+            }
         });
     }
 }

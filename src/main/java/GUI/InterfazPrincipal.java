@@ -1,9 +1,7 @@
 package GUI;
 
-import Data.GestorDeArchivos;
 import Model.Biblioteca;
 import Model.Usuario;
-import Model.UsuarioConectado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +11,7 @@ import java.awt.event.ActionListener;
 public class InterfazPrincipal extends JFrame {
 
     private Biblioteca biblioteca;  // Instancia de la clase Biblioteca
-    private Usuario usuario = UsuarioConectado.getUsuario();  // Instancia de la clase Usuario (Se necesita para las reviews y estaba  contemplado que hay que crear una pantalla de login)
+    private Usuario usuario;  // Instancia de la clase Usuario (Se necesita para las reviews y estaba  contemplado que hay que crear una pantalla de login)
 
     public InterfazPrincipal(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;  // Inicializa la biblioteca
@@ -33,10 +31,12 @@ public class InterfazPrincipal extends JFrame {
         JButton btnModificarReview = new JButton("Modificar Reseña");
         JButton btnEliminarReview = new JButton("Eliminar Reseña");
         JButton btnMostarReviews = new JButton("Mostrar Reseñas");
-        JLabel labelUsuario = new JLabel("Usuario logueado: " + (usuario != null ? usuario.getNombre() : "Ninguno"));
+        JButton btnHistorial = new JButton("Mostrar Historial");
+        JButton btnPrestamo = new JButton("Realizar Prestamo");
+        JButton btnReserva = new JButton("Realizar Reserva");
+        JButton btnEstadoReserva = new JButton("Ver Estado de Reserva");
+        JButton btnVerReservas = new JButton("Ver Todas las Reservas");
 
-
-        add(labelUsuario);
         add(btnCrearLibro);
         add(btnModificarLibro);
         add(btnEliminarLibro);
@@ -46,6 +46,11 @@ public class InterfazPrincipal extends JFrame {
         add(btnModificarReview);
         add(btnEliminarReview);
         add(btnMostarReviews);
+        add(btnHistorial);
+        add(btnPrestamo);
+        add(btnReserva);
+        add(btnEstadoReserva);
+        add(btnVerReservas);
 
         // Acción para crear libro
         btnCrearLibro.addActionListener(new ActionListener() {
@@ -105,13 +110,6 @@ public class InterfazPrincipal extends JFrame {
             }
         });
 
-        GestorDeArchivos gestor = new GestorDeArchivos();
-        if (gestor.guardarBiblioteca(this.biblioteca)) {
-            System.out.println("Informacion guardada");
-        } else {
-            System.out.println("Error al guardar");
-        }
-
         // Acción para agregar review
         btnAgregarReview.addActionListener(new ActionListener() {
             @Override
@@ -153,12 +151,62 @@ public class InterfazPrincipal extends JFrame {
                 setVisible(false);  // Ocultar la ventana principal
             }
         });
+
+        btnHistorial.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Mostrar la ventana para mostrar el historial de préstamos
+                InterfazHistorial historialPrestamosFrame = new InterfazHistorial(biblioteca, usuario);
+                historialPrestamosFrame.setVisible(true);
+                setVisible(false);  // Ocultar la ventana principal
+            }
+        });
+
+        // Acción para gestionar préstamos
+        btnPrestamo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfazPrestamo gestionarPrestamosFrame = new InterfazPrestamo(biblioteca, usuario); // Pasar la instancia de Biblioteca y Usuario
+                gestionarPrestamosFrame.setVisible(true);
+                setVisible(false); // Ocultar la ventana principal
+            }
+        });
+
+        // Acción para gestionar reservas
+        btnReserva.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfazReserva hacerReservaFrame = new InterfazReserva(biblioteca);
+                hacerReservaFrame.setVisible(true);
+                setVisible(false);
+            }
+        });
+
+        // Acción para ver las reservas
+        btnEstadoReserva.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfazEstadoReserva verReservaFrame = new InterfazEstadoReserva(biblioteca);
+                verReservaFrame.setVisible(true);
+                setVisible(false);
+            }
+        });
+
+        //Acción para ver todas las reservas del usuario
+        btnVerReservas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfazVerReservas verReservasFrame = new InterfazVerReservas(biblioteca);
+                verReservasFrame.setVisible(true);
+                setVisible(false);
+            }
+        });
     }
 
-    /*
     public static void main(String[] args) {
         // Crear una instancia de la biblioteca
         Biblioteca biblioteca = new Biblioteca("Biblioteca Central", "Calle Ficticia 123");
+        Usuario usuario1 = new Usuario("Usuario", 21345);
 
         // Ejecutar la interfaz principal con la biblioteca creada
         SwingUtilities.invokeLater(() -> {
@@ -166,5 +214,4 @@ public class InterfazPrincipal extends JFrame {
             principal.setVisible(true);
         });
     }
-    */ //Este main no es necesario ya que se ejecuta desde la clase Main
 }

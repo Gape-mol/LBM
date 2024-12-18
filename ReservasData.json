@@ -1,0 +1,116 @@
+[
+  {
+    "numeroSolicitud": "56166239259112384",
+    "usuario": {
+      "nombre": "Juan",
+      "identificacion": 1,
+      "prestamos": [],
+      "multas": [],
+      "administrador": false
+    },
+    "libro": {
+      "titulo": "Cien años de soledad",
+      "autor": "Gabriel García Márquez ",
+      "Isbn": "9780060883287",
+      "editorial": "HarperCollins",
+      "year": 1967,
+      "reviews": []
+    },
+    "fechaReserva": "Dec 20, 2024, 12:00:00 AM"
+  },
+  {
+    "numeroSolicitud": "59679522135771268",
+    "usuario": {
+      "nombre": "Temuco",
+      "identificacion": 2,
+      "prestamos": [],
+      "multas": [],
+      "administrador": false
+    },
+    "libro": {
+      "titulo": "Cien años de soledad",
+      "autor": "Gabriel García Márquez ",
+      "Isbn": "9780060883287",
+      "editorial": "HarperCollins",
+      "year": 1967,
+      "reviews": []
+    },
+    "fechaReserva": "Dec 12, 2013, 12:00:00 AM"
+  },
+  {
+    "numeroSolicitud": "59679523228913428",
+    "usuario": {
+      "nombre": "Temuco",
+      "identificacion": 2,
+      "prestamos": [],
+      "multas": [],
+      "administrador": false
+    },
+    "libro": {
+      "titulo": "Cien años de soledad",
+      "autor": "Gabriel García Márquez ",
+      "Isbn": "9780060883287",
+      "editorial": "HarperCollins",
+      "year": 1967,
+      "reviews": []
+    },
+    "fechaReserva": "Dec 22, 2345, 12:00:00 AM"
+  },
+  {
+    "numeroSolicitud": "59679609489287716",
+    "usuario": {
+      "nombre": "Temuco",
+      "identificacion": 2,
+      "prestamos": [],
+      "multas": [],
+      "administrador": false
+    },
+    "libro": {
+      "titulo": "Fifty Shades of Grey",
+      "autor": " E. L. James",
+      "Isbn": "3312",
+      "editorial": "Vintage Books",
+      "year": 2011,
+      "reviews": []
+    },
+    "fechaReserva": "Oct 12, 3334, 12:00:00 AM"
+  },
+  {
+    "numeroSolicitud": "59679613471807268",
+    "usuario": {
+      "nombre": "Temuco",
+      "identificacion": 2,
+      "prestamos": [],
+      "multas": [],
+      "administrador": false
+    },
+    "libro": {
+      "titulo": "Fifty Shades of Grey",
+      "autor": " E. L. James",
+      "Isbn": "3312",
+      "editorial": "Vintage Books",
+      "year": 2011,
+      "reviews": []
+    },
+    "fechaReserva": "Aug 13, 1238, 12:00:00 AM"
+  },
+  {
+    "numeroSolicitud": "59679614041225260",
+    "usuario": {
+      "nombre": "Temuco",
+      "identificacion": 2,
+      "prestamos": [],
+      "multas": [],
+      "administrador": false
+    },
+    "libro": {
+      "titulo": "sdds",
+      "autor": "dsas",
+      "Isbn": "1",
+      "editorial": "deww",
+      "year": 3313,
+      "reviews": []
+    },
+    "fechaReserva": "Aug 13, 1238, 12:00:00 AM"
+  }
+]

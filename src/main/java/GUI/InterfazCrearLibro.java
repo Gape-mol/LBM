@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.GestorDeArchivos;
 import Model.Biblioteca;
 import Model.Libro;
 
@@ -17,7 +18,6 @@ public class InterfazCrearLibro extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        //Elimine el flowLayout por como posiciona los objetos ya que desde autor que se descuadran los objetos.
 
         JLabel labelTitulo = new JLabel("Título:");
         JTextField campoTitulo = new JTextField(20);
@@ -101,13 +101,29 @@ public class InterfazCrearLibro extends JFrame {
                 int anio = Integer.parseInt(campoAnio.getText());
                 String editorial = campoEditorial.getText();
 
-                biblioteca.crearLibro(new Libro(titulo, autor, isbn, editorial, anio));
+                // Verificar si el ISBN ya está registrado en la biblioteca
+                boolean isbnRepetido = false;
+                for (Libro libro : biblioteca.getLibros()) {
+                    if (libro.getIsbn().equals(isbn)) {
+                        isbnRepetido = true;
+                        break;
+                    }
+                }
 
-                JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
-                setVisible(false);
-                new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
+                if (isbnRepetido) {
+                    JOptionPane.showMessageDialog(null, "El ISBN ya está registrado en la biblioteca.");
+                } else {
+                    biblioteca.crearLibro(new Libro(titulo, autor, isbn, editorial, anio));
+
+                    GestorDeArchivos gestor = new GestorDeArchivos();
+                    gestor.guardarBiblioteca(biblioteca);
+
+                    JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");
+                    setVisible(false);
+                    new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
+                }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "El año debe ser un número entero."); //Añado esto porque se produce un error si el año no es un número.
+                JOptionPane.showMessageDialog(null, "El año debe ser un número entero.");
             }
         });
 
@@ -116,7 +132,5 @@ public class InterfazCrearLibro extends JFrame {
             setVisible(false);
             new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
         });
-
-        //Se puede poner un pack(); para ajustar automaticamente el tamaño de la ventana, pero considerando que hay un tamaño fijo, no es necesario.
     }
 }

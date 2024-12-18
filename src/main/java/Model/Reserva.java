@@ -3,23 +3,23 @@ package Model;
 import java.util.Date;
 
 public class Reserva {
-	private int numeroSolicitud;
+	private String numeroSolicitud;
 	private Usuario usuario;
 	private Libro libro;
 	private Date fechaReserva;
 
-	public Reserva(int numeroSolicitud, Usuario usuario, Libro libro, Date fechaReserva) {
+	public Reserva(String numeroSolicitud, Usuario usuario, Libro libro, Date fechaReserva) {
 		this.numeroSolicitud = numeroSolicitud;
 		this.libro=libro;
 		this.usuario=usuario;
 		this.fechaReserva=fechaReserva;
 	}
 
-	public int getNumeroSolicitud() {
+	public String getNumeroSolicitud() {
 		return this.numeroSolicitud;
 	}
 
-	public void setNumeroSolicitud(int numeroSolicitud) {
+	public void setNumeroSolicitud(String numeroSolicitud) {
 		this.numeroSolicitud = numeroSolicitud;
 	}
 
