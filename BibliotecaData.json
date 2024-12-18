@@ -9,6 +9,30 @@
       "editorial": "HarperCollins",
       "year": 1967,
       "reviews": []
+    },
+    {
+      "titulo": "1984",
+      "autor": "George Orwell",
+      "Isbn": "3312",
+      "editorial": "Harvill Secker",
+      "year": 1949,
+      "reviews": []
+    },
+    {
+      "titulo": "Cien años de soledad",
+      "autor": "Gabriela Garcia Marquez",
+      "Isbn": "3313",
+      "editorial": "Editorial Sudamericana",
+      "year": 1967,
+      "reviews": []
+    },
+    {
+      "titulo": "El principito",
+      "autor": "Antnie de Saint-Exupery",
+      "Isbn": "3311",
+      "editorial": "Gallimard",
+      "year": 1943,
+      "reviews": []
     }
   ]
 }
