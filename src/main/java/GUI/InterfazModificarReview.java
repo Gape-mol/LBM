@@ -4,6 +4,7 @@ import Model.Biblioteca;
 import Model.Libro;
 import Model.Review;
 import Model.Usuario;
+import Data.GestorDeArchivos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -122,6 +123,7 @@ public class InterfazModificarReview extends JFrame {
             if (libro != null) {
                 // Buscar y modificar la reseña
                 Review review = libro.buscarReview(usuario);
+                System.out.println(review);
                 if (review != null) {
                     review.editarReseña(textoReseña, calificacion);
 
@@ -135,6 +137,9 @@ public class InterfazModificarReview extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "No se encontró un libro con ese ISBN.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+
+            GestorDeArchivos gestor = new GestorDeArchivos();
+            gestor.guardarBiblioteca(biblioteca); // Guardar los cambios en el archivo
         });
 
         // Acción para volver al menú principal

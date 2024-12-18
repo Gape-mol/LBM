@@ -43,7 +43,7 @@ public class InterfazMostrarReview extends JFrame {
 
                 // Mostrar todas las reseñas
                 for (Review review : libro.getReviews()) {
-                    areaReseñas.append(review.toString() + "\n\n");
+                    areaReseñas.append(review.mostrarReseña() + "\n\n");
                 }
 
                 // Si no hay reseñas
