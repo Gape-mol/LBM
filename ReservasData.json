@@ -112,5 +112,105 @@
       "reviews": []
     },
     "fechaReserva": "Aug 13, 1238, 12:00:00 AM"
+  },
+  {
+    "numeroSolicitud": "63192593553119496",
+    "usuario": {
+      "nombre": "Temuco",
+      "identificacion": 2,
+      "prestamos": [
+        {
+          "fechaPrestamo": "Apr 12, 1241, 12:00:00 AM",
+          "fechaDevolucion": "Apr 22, 1241, 12:00:00 AM",
+          "libro": {
+            "titulo": "dfddsas",
+            "autor": "dfdw",
+            "Isbn": "3312",
+            "editorial": "fwewe",
+            "year": 31212,
+            "reviews": [
+              {
+                "texto": "me golpeo mi suegra cuando se lo regale, me lo quede yo al final y es mi libro favorito",
+                "calificacion": 5,
+                "identificacionUsuario": 0
+              },
+              {
+                "texto": "pepito",
+                "calificacion": 3,
+                "nombreUsuario": "Temuco",
+                "identificacionUsuario": 2
+              }
+            ]
+          }
+        }
+      ],
+      "multas": [],
+      "administrador": false
+    },
+    "libro": {
+      "titulo": "dfddsas",
+      "autor": "dfdw",
+      "Isbn": "3312",
+      "editorial": "fwewe",
+      "year": 31212,
+      "reviews": [
+        {
+          "texto": "me golpeo mi suegra cuando se lo regale, me lo quede yo al final y es mi libro favorito",
+          "calificacion": 5,
+          "identificacionUsuario": 0
+        },
+        {
+          "texto": "pepito",
+          "calificacion": 3,
+          "nombreUsuario": "Temuco",
+          "identificacionUsuario": 2
+        }
+      ]
+    },
+    "fechaReserva": "Oct 12, 3458, 12:00:00 AM"
+  },
+  {
+    "numeroSolicitud": "63192614723572536",
+    "usuario": {
+      "nombre": "Temuco",
+      "identificacion": 2,
+      "prestamos": [
+        {
+          "fechaPrestamo": "Sep 12, 6792, 12:00:00 AM",
+          "fechaDevolucion": "Sep 12, 3459, 12:00:00 AM",
+          "libro": {
+            "titulo": "dfddsas",
+            "autor": "dfdw",
+            "Isbn": "3312",
+            "editorial": "fwewe",
+            "year": 31212,
+            "reviews": [
+              {
+                "texto": "me golpeo mi suegra cuando se lo regale, me lo quede yo al final y es mi libro favorito",
+                "calificacion": 5,
+                "identificacionUsuario": 0
+              }
+            ]
+          }
+        }
+      ],
+      "multas": [],
+      "administrador": false
+    },
+    "libro": {
+      "titulo": "dfddsas",
+      "autor": "dfdw",
+      "Isbn": "3312",
+      "editorial": "fwewe",
+      "year": 31212,
+      "reviews": [
+        {
+          "texto": "me golpeo mi suegra cuando se lo regale, me lo quede yo al final y es mi libro favorito",
+          "calificacion": 5,
+          "identificacionUsuario": 0
+        }
+      ]
+    },
+    "fechaReserva": "Jul 12, 2349, 12:00:00 AM"
   }
 ]
