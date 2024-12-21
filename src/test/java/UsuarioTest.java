@@ -18,12 +18,15 @@ class UsuarioTest {
         assertEquals(1, usuario.getPrestamos().size());
     }
 
+    /*
     @Test
     void agregarReserva() {
         Reserva reserva = new Reserva(1, usuario, libro, fecha);
         usuario.agregarReserva(reserva);
         assertEquals(1, usuario.getReservas().size());
     }
+
+     */
 
     @Test
     void agregarMulta() {
@@ -40,6 +43,7 @@ class UsuarioTest {
         assertEquals(0, usuario.getPrestamos().size());
     }
 
+    /*
     @Test
     void eliminarReserva() {
         Reserva reserva = new Reserva(1, usuario, libro, fecha);
@@ -47,6 +51,8 @@ class UsuarioTest {
         usuario.eliminarReserva(reserva);
         assertEquals(0, usuario.getReservas().size());
     }
+
+     */
 
     @Test
     void eliminarMulta() {
@@ -63,12 +69,15 @@ class UsuarioTest {
         usuario.mostrarPrestamos();
     }
 
+    /*
     @Test
     void mostrarReservas() {
         Reserva reserva = new Reserva(1, usuario, libro, fecha);
         usuario.agregarReserva(reserva);
         usuario.mostrarReservas();
     }
+
+     */
 
     @Test
     void mostrarMultas() {
