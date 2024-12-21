@@ -47,7 +47,7 @@ public class Reserva {
 	public String toString() {
 		return "Reserva{" +
 				"numeroSolicitud=" + numeroSolicitud +
-				", usuario='" + usuario + '\'' +
+				", usuario='" + usuario.getNombre() + '\'' +
 				", libro=" + libro.getTitulo() +
 				", fechaReserva='" + fechaReserva + '\'' +
 				'}';
