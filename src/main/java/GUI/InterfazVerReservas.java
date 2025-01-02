@@ -17,6 +17,11 @@ public class InterfazVerReservas extends JFrame {
     private Usuario usuario;
     private Biblioteca biblioteca;
 
+    /**
+     * Metodo constructor de InterfazVerReservas
+     * Configura la ventana para mostrar todas las reservas asociadas al usuario activo
+     * @param biblioteca Biblioteca para volver a la InterfazPrincipal
+     */
     public InterfazVerReservas(Biblioteca biblioteca) {
         this.usuario = UsuarioConectado.getUsuario();
         this.biblioteca = biblioteca;
@@ -56,7 +61,9 @@ public class InterfazVerReservas extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
         add(btnVolver, BorderLayout.SOUTH);
 
-        // Acción para volver al menú principal
+        /**
+         * Accion relacionada al boton "Volver"
+         */
         btnVolver.addActionListener((ActionEvent e) -> {
             setVisible(false);
             new InterfazPrincipal(biblioteca).setVisible(true);

@@ -17,6 +17,12 @@ public class InterfazEstadoReserva extends JFrame {
     private Usuario usuario;
     private Biblioteca biblioteca;
 
+    /**
+     * Metodo Constructor para InterfazEstadoReserva
+     * Configura la ventana para buscar el estado de una reserva
+     * @param biblioteca Biblioteca guardada para iniciar la InterfazPrincipal
+     */
+
     public InterfazEstadoReserva(Biblioteca biblioteca) {
         this.usuario = UsuarioConectado.getUsuario();
         this.biblioteca = biblioteca;
@@ -41,7 +47,10 @@ public class InterfazEstadoReserva extends JFrame {
         add(btnBuscar);
         add(btnVolver);
 
-        // Acción para buscar libro
+        /**
+         * Accion del boton "Buscar"
+         * Tras ingresar la identificacion de la busca en la lista de reservas la que posea la identificacion y esteblece su estado segun la fecha actual del sistema
+         */
         btnBuscar.addActionListener((ActionEvent e) -> {
             String numeroSolicitud = campoNumeroSolicitud.getText();
             boolean encontrado = false;
@@ -78,13 +87,20 @@ public class InterfazEstadoReserva extends JFrame {
             }
         });
 
-        // Acción para volver al menú principal
+        /**
+         * Accion del boton "Volver"
+         */
         btnVolver.addActionListener((ActionEvent e) -> {
             setVisible(false);
             new InterfazPrincipal(biblioteca).setVisible(true);
         });
     }
 
+    /**
+     * Metodo para establecer la fecha a un formato especifico
+     * @param fecha Fecha establecida en el sistema
+     * @return Retorna la fecha como Date, el cual posee el formato establecido para evitar problemas en el futuro
+     */
     public Date formatearFecha(Date fecha){
         Calendar cal = Calendar.getInstance();
         cal.setTime(fecha);

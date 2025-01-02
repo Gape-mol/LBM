@@ -128,7 +128,7 @@ public class InterfazAgregarReview extends JFrame {
                     JOptionPane.showMessageDialog(this, "Ya has agregado una reseña para este libro.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 } else {
-                    libro.agregarReview(nuevaReseña, usuario);
+                    libro.agregarReview(nuevaReseña);
                 }
 
                 // Guardar los datos de la biblioteca con las nuevas reseñas
