@@ -1,17 +1,20 @@
 package Model;
 
+/**
+ * Clase para gestionar la sesión del usuario conectado.
+ * Esta clase asegura que la información del usuario conectado esté disponible de forma global
+ * sin necesidad de pasar la instancia del usuario entre ventanas o componentes.
+ */
 public class UsuarioConectado {
-
-    /**
-     * Clase para gestionar la sesión del usuario conectado.
-     * Esta clase asegura que la información del usuario conectado esté disponible de forma global
-     * sin necesidad de pasar la instancia del usuario entre ventanas o componentes.
-     */
-    private static Usuario UsuarioConectado;
 
     /**
      * Instancia estática del usuario conectado.
      * Solo puede haber un usuario conectado al mismo tiempo.
+     */
+    private static Usuario UsuarioConectado;
+
+    /**
+     * Constructor privado para evitar la creación de instancias de esta clase.
      */
     private UsuarioConectado() {}
 
