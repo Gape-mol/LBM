@@ -3,14 +3,14 @@
     "nombre": "Juan",
     "identificacion": 1,
     "prestamos": [],
-    "reservas": [],
-    "multas": []
+    "multas": [],
+    "administrador": false
   },
   {
     "nombre": "Temuco",
     "identificacion": 2,
     "prestamos": [],
-    "reservas": [],
-    "multas": []
+    "multas": [],
+    "administrador": false
   }
 ]
