@@ -2,6 +2,7 @@ package GUI;
 
 import Model.Biblioteca;
 import Model.Usuario;
+import Model.UsuarioConectado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class InterfazPrincipal extends JFrame {
 
     public InterfazPrincipal(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;  // Inicializa la biblioteca
+        this.usuario = UsuarioConectado.getUsuario();  // Inicializa el usuario
 
         setTitle("Biblioteca");
         setSize(400, 300);

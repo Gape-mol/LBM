@@ -4,6 +4,7 @@ import Model.Biblioteca;
 import Model.Libro;
 import Model.Review;
 import Model.Usuario;
+import Data.GestorDeArchivos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,12 +43,16 @@ public class InterfazEliminarReview extends JFrame {
                     libro.eliminarReview(review);
                     JOptionPane.showMessageDialog(this, "Reseña eliminada exitosamente.");
                     setVisible(false);
+                    new InterfazPrincipal(biblioteca).setVisible(true); // Volver a la ventana principal
                 } else {
                     JOptionPane.showMessageDialog(this, "No tienes reseña para eliminar.");
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "El libro no se encontró.");
             }
+
+            GestorDeArchivos gestor = new GestorDeArchivos();
+            gestor.guardarBiblioteca(biblioteca); // Guardar los cambios en el archivo
         });
 
         btnVolver.addActionListener(e -> {
