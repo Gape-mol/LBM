@@ -6,33 +6,39 @@ import Model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Calendar;
 
+/**
+ * Clase que representa la interfaz gráfica para consultar el estado de una reserva de libro.
+ * Permite al usuario ingresar el número de solicitud de la reserva para conocer si el libro
+ * está disponible para su préstamo o si ya no está reservado.
+ */
 public class InterfazEstadoReserva extends JFrame {
 
     private Usuario usuario;
     private Biblioteca biblioteca;
 
     /**
-     * Metodo Constructor para InterfazEstadoReserva
-     * Configura la ventana para buscar el estado de una reserva
-     * @param biblioteca Biblioteca guardada para iniciar la InterfazPrincipal
+     * Constructor de la clase InterfazEstadoReserva.
+     * Inicializa los componentes de la ventana para consultar el estado de una reserva.
+     *
+     * @param biblioteca Objeto de la clase Biblioteca que contiene la colección de libros.
      */
-
     public InterfazEstadoReserva(Biblioteca biblioteca) {
         this.usuario = UsuarioConectado.getUsuario();
         this.biblioteca = biblioteca;
 
+        // Configuración de la ventana
         setTitle("Buscar Libro");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new FlowLayout());
 
+        // Componentes de la interfaz
         JLabel labelISBN = new JLabel("Ingrese el numero de solicitud del prestamo");
         JTextField campoNumeroSolicitud = new JTextField(20);
         JTextArea areaResultado = new JTextArea(5, 30);
@@ -48,8 +54,10 @@ public class InterfazEstadoReserva extends JFrame {
         add(btnVolver);
 
         /**
-         * Accion del boton "Buscar"
-         * Tras ingresar la identificacion de la busca en la lista de reservas la que posea la identificacion y esteblece su estado segun la fecha actual del sistema
+         * Acción asociada al botón "Buscar".
+         * Permite consultar el estado de la reserva ingresando el número de solicitud.
+         * Si la reserva existe, muestra el estado del libro (listo para retiro, no disponible, o no reservado).
+         * Si la reserva no se encuentra, muestra un mensaje indicando que no existe.
          */
         btnBuscar.addActionListener((ActionEvent e) -> {
             String numeroSolicitud = campoNumeroSolicitud.getText();
@@ -88,7 +96,8 @@ public class InterfazEstadoReserva extends JFrame {
         });
 
         /**
-         * Accion del boton "Volver"
+         * Acción asociada al botón "Volver".
+         * Cierra la ventana actual y regresa a la interfaz principal de la aplicación.
          */
         btnVolver.addActionListener((ActionEvent e) -> {
             setVisible(false);
@@ -97,11 +106,12 @@ public class InterfazEstadoReserva extends JFrame {
     }
 
     /**
-     * Metodo para establecer la fecha a un formato especifico
-     * @param fecha Fecha establecida en el sistema
-     * @return Retorna la fecha como Date, el cual posee el formato establecido para evitar problemas en el futuro
+     * Formatea la fecha eliminando la hora, los minutos, los segundos y los milisegundos.
+     *
+     * @param fecha La fecha a formatear.
+     * @return La fecha formateada, con hora establecida a 00:00:00.
      */
-    public Date formatearFecha(Date fecha){
+    public Date formatearFecha(Date fecha) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(fecha);
         cal.set(Calendar.HOUR_OF_DAY, 0);

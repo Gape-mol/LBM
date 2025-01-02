@@ -7,20 +7,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Clase que representa la interfaz gráfica para agregar un nuevo usuario en la biblioteca.
+ * Permite ingresar el nombre y la identificación del usuario, así como especificar si es un administrador.
+ */
 public class InterfazAgregarUsuario extends JFrame {
 
     private GestorDeArchivos gestorDeArchivos;
     private ArrayList<Usuario> usuarios;
 
+    /**
+     * Constructor de la clase InterfazAgregarUsuario.
+     * Inicializa los componentes de la ventana para agregar un usuario y gestiona el almacenamiento de usuarios.
+     */
     public InterfazAgregarUsuario() {
         gestorDeArchivos = new GestorDeArchivos();
         usuarios = gestorDeArchivos.cargarUsuarios();
 
+        // Configuración de la ventana
         setTitle("Agregar Usuario");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        // Componentes de la interfaz
         JLabel labelNombre = new JLabel("Nombre:");
         JTextField campoNombre = new JTextField(20);
         JLabel labelIdentificacion = new JLabel("Identificación:");
@@ -72,7 +82,12 @@ public class InterfazAgregarUsuario extends JFrame {
 
         add(panel);
 
-        // Acción para guardar usuario
+        /**
+         * Acción asociada al botón "Guardar".
+         * Valida los datos ingresados, crea un nuevo usuario y lo guarda en el archivo.
+         * Si la identificación no es un número entero, muestra un mensaje de error.
+         * Si el usuario se guarda correctamente, muestra un mensaje de éxito.
+         */
         btnGuardar.addActionListener(e -> {
             try {
                 String nombre = campoNombre.getText();
@@ -92,7 +107,10 @@ public class InterfazAgregarUsuario extends JFrame {
             }
         });
 
-        // Acción para volver
+        /**
+         * Acción asociada al botón "Volver".
+         * Cierra la ventana actual sin guardar cambios.
+         */
         btnVolver.addActionListener(e -> {
             setVisible(false);
         });
