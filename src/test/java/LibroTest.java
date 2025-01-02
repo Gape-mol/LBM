@@ -9,7 +9,7 @@ class LibroTest {
 
     @Test
     void agregarReview() {
-        Usuario usuario = new Usuario("Juan", 123456);
+        Usuario usuario = new Usuario("Juan", 1);
         Review review = new Review("Excelente libro", 5, usuario);
         Libro libro = new Libro("El señor de los anillos", "J.R.R. Tolkien", "9780007525546", "Minotauro", 1954);
         libro.agregarReview(review, usuario);
@@ -18,21 +18,21 @@ class LibroTest {
 
     @Test
     void buscarReview() {
-        Usuario usuario = new Usuario("Juan", 123456);
+        Usuario usuario = new Usuario("Juan", 1);
         Review review = new Review("Excelente libro", 5, usuario);
         Libro libro = new Libro("El señor de los anillos", "J.R.R. Tolkien", "9780007525546", "Minotauro", 1954);
         libro.agregarReview(review, usuario);
-        assertEquals("Reseña: Excelente libro\nCalificación: 5\nUsuario: Juan", libro.buscarReview(usuario).toString());
+        assertEquals("Reseña: Excelente libro\nCalificación: 5\nUsuario: 1", libro.buscarReview(usuario).toString());
     }
 
     @Test
     void editarReview() {
-        Usuario usuario = new Usuario("Juan", 123456);
+        Usuario usuario = new Usuario("Juan", 1);
         Review review = new Review("Excelente libro", 5, usuario);
         Libro libro = new Libro("El señor de los anillos", "J.R.R. Tolkien", "9780007525546", "Minotauro", 1954);
         libro.agregarReview(review, usuario);
         libro.editarReview(usuario, "Muy buen libro", 4);
-        assertEquals("Reseña: Muy buen libro\nCalificación: 4\nUsuario: Juan", libro.buscarReview(usuario).toString());
+        assertEquals("Reseña: Muy buen libro\nCalificación: 4\nUsuario: 1", libro.buscarReview(usuario).toString());
     }
 
     @Test
