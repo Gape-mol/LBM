@@ -9,11 +9,23 @@ import Data.GestorDeArchivos;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Clase que representa la interfaz gráfica para modificar una reseña de un libro.
+ * Permite al usuario editar el texto y la calificación de una reseña previamente escrita.
+ */
 public class InterfazModificarReview extends JFrame {
 
     private Biblioteca biblioteca;
     private Usuario usuario;
 
+    /**
+     * Constructor de la clase InterfazModificarReview.
+     * Inicializa la interfaz gráfica para modificar una reseña, cargando los componentes necesarios como campos de texto,
+     * botones y opciones de calificación.
+     *
+     * @param biblioteca La biblioteca que contiene los libros y reseñas.
+     * @param usuario El usuario que quiere modificar su reseña.
+     */
     public InterfazModificarReview(Biblioteca biblioteca, Usuario usuario) {
         this.biblioteca = biblioteca;
         this.usuario = usuario;
@@ -23,6 +35,7 @@ public class InterfazModificarReview extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        // Componentes de la interfaz
         JLabel labelISBN = new JLabel("ISBN del libro:");
         JTextField campoISBN = new JTextField(20);
         JLabel labelTextoReseña = new JLabel("Nuevo texto de reseña:");
@@ -54,6 +67,7 @@ public class InterfazModificarReview extends JFrame {
         JButton btnModificarReseña = new JButton("Modificar Reseña");
         JButton btnVolver = new JButton("Volver");
 
+        // Layout para organizar los componentes
         JPanel panel = new JPanel();
         GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
@@ -100,7 +114,11 @@ public class InterfazModificarReview extends JFrame {
 
         add(panel);
 
-        // Acción para modificar la reseña
+        /**
+         * Acción asociada al botón "Modificar Reseña".
+         * Permite modificar la reseña de un libro si el usuario ya ha escrito una. La reseña y calificación se actualizan
+         * en el libro correspondiente y se guardan los cambios.
+         */
         btnModificarReseña.addActionListener(e -> {
             String isbn = campoISBN.getText().trim();
             String textoReseña = areaReseña.getText().trim();
@@ -111,6 +129,7 @@ public class InterfazModificarReview extends JFrame {
                 return;
             }
 
+            // Obtener la calificación seleccionada
             if (calificacion1.isSelected()) calificacion = 1;
             else if (calificacion2.isSelected()) calificacion = 2;
             else if (calificacion3.isSelected()) calificacion = 3;
@@ -123,7 +142,6 @@ public class InterfazModificarReview extends JFrame {
             if (libro != null) {
                 // Buscar y modificar la reseña
                 Review review = libro.buscarReview(usuario);
-                System.out.println(review);
                 if (review != null) {
                     review.editarReseña(textoReseña, calificacion);
 
@@ -138,11 +156,15 @@ public class InterfazModificarReview extends JFrame {
                 JOptionPane.showMessageDialog(this, "No se encontró un libro con ese ISBN.", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
+            // Guardar los cambios en la biblioteca
             GestorDeArchivos gestor = new GestorDeArchivos();
             gestor.guardarBiblioteca(biblioteca); // Guardar los cambios en el archivo
         });
 
-        // Acción para volver al menú principal
+        /**
+         * Acción asociada al botón "Volver".
+         * Permite regresar a la interfaz principal de la biblioteca.
+         */
         btnVolver.addActionListener(e -> {
             setVisible(false);
             new InterfazPrincipal(biblioteca).setVisible(true);

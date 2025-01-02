@@ -9,20 +9,34 @@ import Data.GestorDeArchivos;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Clase que representa la interfaz gráfica para agregar una reseña a un libro en la biblioteca.
+ * Permite al usuario ingresar el ISBN de un libro, escribir una reseña y asignar una calificación.
+ * La reseña será guardada en el libro correspondiente si no se ha agregado previamente.
+ */
 public class InterfazAgregarReview extends JFrame {
 
     private Biblioteca biblioteca;
     private Usuario usuario;
 
+    /**
+     * Constructor de la clase InterfazAgregarReview.
+     * Inicializa los componentes de la ventana para agregar una reseña.
+     *
+     * @param biblioteca Objeto de la clase Biblioteca que contiene la colección de libros.
+     * @param usuario Objeto de la clase Usuario que está agregando la reseña.
+     */
     public InterfazAgregarReview(Biblioteca biblioteca, Usuario usuario) {
         this.biblioteca = biblioteca;
         this.usuario = usuario;
 
+        // Configuración de la ventana
         setTitle("Agregar Reseña");
         setSize(400, 350);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        // Componentes de la interfaz
         JLabel labelISBN = new JLabel("ISBN del libro:");
         JTextField campoISBN = new JTextField(20);
         JLabel labelTextoReseña = new JLabel("Texto de la reseña:");
@@ -100,7 +114,12 @@ public class InterfazAgregarReview extends JFrame {
 
         add(panel);
 
-        // Acción para agregar la reseña
+        /**
+         * Acción asociada al botón "Agregar Reseña".
+         * Valida los campos ingresados y agrega una reseña al libro con el ISBN proporcionado.
+         * Si ya existe una reseña del mismo usuario, muestra un mensaje de error.
+         * Si el libro no se encuentra, también muestra un mensaje de error.
+         */
         btnAgregarReseña.addActionListener(e -> {
             String isbn = campoISBN.getText().trim();
             String textoReseña = areaReseña.getText().trim();
@@ -144,7 +163,10 @@ public class InterfazAgregarReview extends JFrame {
             }
         });
 
-        // Acción para volver al menú principal
+        /**
+         * Acción asociada al botón "Volver".
+         * Cierra la ventana actual y abre la interfaz principal de la aplicación.
+         */
         btnVolver.addActionListener(e -> {
             setVisible(false);
             new InterfazPrincipal(biblioteca).setVisible(true);
