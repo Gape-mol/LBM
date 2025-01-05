@@ -2,16 +2,38 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que representa un libro en el sistema.
+ * Cada libro tiene un título, autor, ISBN, editorial, año de publicación y una lista de reseñas asociadas.
+ */
 public class Libro {
-    private String titulo;
-    private String autor;
-    private String Isbn;
-    private String editorial;
-    private int year;
+    //Atributos
 
+    /** Título del libro. */
+    private String titulo;
+    /** Autor del libro. */
+    private String autor;
+    /** ISBN del libro. */
+    private String Isbn;
+    /** Editorial del libro. */
+    private String editorial;
+    /** Año de publicación del libro. */
+    private int year;
+    /** Lista de reseñas asociadas al libro. */
     private ArrayList<Review> reviews;
 
     //Constructor
+
+    /**
+     * Constructor para inicializar un libro con su título, autor, ISBN, editorial y año de publicación.
+     * Por defecto, la lista de reseñas está vacía.
+     *
+     * @param titulo el título del libro.
+     * @param autor el autor del libro.
+     * @param Isbn el ISBN del libro.
+     * @param editorial la editorial del libro.
+     * @param year el año de publicación del libro.
+     */
     public Libro(String titulo, String autor, String Isbn, String editorial, int year) {
         this.titulo = titulo;
         this.autor = autor;
@@ -22,22 +44,48 @@ public class Libro {
     }
 
     //Getters
+
+    /**
+     * Obtiene el título del libro.
+     *
+     * @return el título del libro.
+     */
     public String getTitulo() {
         return this.titulo;
     }
 
+    /**
+     * Obtiene el autor del libro.
+     *
+     * @return el autor del libro.
+     */
     public String getAutor() {
         return this.autor;
     }
 
+    /**
+     * Obtiene el ISBN del libro.
+     *
+     * @return el ISBN del libro.
+     */
     public String getIsbn() {
         return this.Isbn;
     }
 
+    /**
+     * Obtiene la editorial del libro.
+     *
+     * @return la editorial del libro.
+     */
     public String getEditorial() {
         return this.editorial;
     }
 
+    /**
+     * Obtiene el año de publicación del libro.
+     *
+     * @return el año de publicación del libro.
+     */
     public int getYear() {
         return this.year;
     }
@@ -84,7 +132,7 @@ public class Libro {
     //Busco la review por Model.Usuario, ya que en teoria solo deberia haber una review por usuario
     public Review buscarReview(Usuario usuario) {
         for (Review review : this.reviews) {
-            if (review.getUsuario().equals(usuario)) {
+            if (review.getNombreUsuario().equals(usuario.getNombre())) {
                 return review;
             }
         }

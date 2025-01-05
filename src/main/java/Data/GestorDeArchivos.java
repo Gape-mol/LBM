@@ -12,7 +12,18 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+/**
+ * Clase para gestionar el guardado y cargado de archivos de datos
+ */
+
 public class GestorDeArchivos {
+
+    /**
+     * Metodo para cargar la biblioteca al inicio de la aplicacion
+     * @param nombre nombre de la biblioteca en caso de que el usuario no tenga una creada previamente
+     * @param direccion direccion fisica de la biblioteca, en caso de que no haya una biblioteca guardada previamente
+     * @return Devuelve al usuario una biblioteca vacia en caso de que el usuario no tenga una guardada previamente
+     */
 
     public Biblioteca cargarBiblioteca(String nombre, String direccion){
         Gson gson = new Gson();
@@ -24,6 +35,11 @@ public class GestorDeArchivos {
         }
         return bilioteca;
     }
+
+    /**
+     * Metodo para retornar lista de usuarios creados y guardados
+     * @return lista de usuarios, en caso de no encontrar el archivo retorna una lista vacia
+     */
 
     public ArrayList<Usuario> cargarUsuarios(){
         Gson gson = new Gson();
@@ -38,6 +54,12 @@ public class GestorDeArchivos {
         return usuarios;
     }
 
+    /**
+     * Metodo para guardar los datos de la biblioteca
+     * @param biblioteca biblioteca de sera guardada en formato "json"
+     * @return retorna un valor true en caso de que el archivo se guardara correctamente, falso en el caso contrario
+     */
+
     public boolean guardarBiblioteca(Biblioteca biblioteca) {
         boolean guardado = false;
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -50,6 +72,12 @@ public class GestorDeArchivos {
         return guardado;
     }
 
+    /**
+     * Metodo para guardar lista de usuarios
+     * @param usuarios Lista de usuarios que seran guardados en formato "json"
+     * @return retorna un valor true en caso de que se hayan guardado correctamente, false en el caso contrario
+     */
+
     public boolean guardarUsuarios(ArrayList<Usuario> usuarios) {
         boolean guardado = false;
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -61,20 +89,41 @@ public class GestorDeArchivos {
         }
         return guardado;
     }
-//Funcion para verificar la integridad de los archivos del programa, entrega un falso "False"
-/*
-    public boolean verificarIntegridadArchivos(){
-        boolean verificado = true;
-        String[] archivos = {"Model.Biblioteca.java", "Libros.java", "Model.Review.java", "Model.Multa.java", "Model.Prestamo.java", "Model.Usuario.java", "Model.Reserva.java"};
-        for (String archivo : archivos){
 
-            File file = new File(System.getProperty("user.dir"),archivo);
-            System.out.println("Verificando: " + file.getAbsolutePath());
-            if (!file.exists()){
-                verificado = false;
-            }
+    /**
+     * Metodo para guardar las reservas de libros
+     * @param reservas lista de reservas que seran guardadas
+     * @return retorna un valor de true si la lista se guarda correctamente, false en el caso contrario
+     */
+
+    public boolean guardarReservas(ArrayList<Reserva> reservas) {
+        boolean guardado = false;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter writer = new FileWriter("ReservasData.json")) {
+            gson.toJson(reservas, writer);
+            guardado = true;
+        } catch (IOException | JsonIOException e) {
+            guardado = false;
         }
-        return verificado;
+        return guardado;
     }
-*/
+
+    /**
+     * Metodo para cargar las reservas guardadas previamentes en formato "json"
+     * @return Retorna un lista vacia en caso de no existir una previamente guardada, en caso contrario retorna la lista guardada
+     */
+
+    public ArrayList<Reserva> cargarReservas(){
+        Gson gson = new Gson();
+        ArrayList<Reserva> reservas = new ArrayList<>();
+
+        Type reservaListType = new TypeToken<ArrayList<Reserva>>() {}.getType();
+        try {
+            reservas = gson.fromJson(new FileReader("ReservasData.json"), reservaListType);
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontro el archivo");
+        }
+        return reservas;
+    }
+
 }
