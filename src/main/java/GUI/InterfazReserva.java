@@ -2,7 +2,6 @@ package GUI;
 
 import Data.GestorDeArchivos;
 import Model.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +12,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
+
+/**
+ * CLase de interfaz para realizar reservas
+ */
 
 public class InterfazReserva extends JFrame {
 
@@ -22,6 +24,11 @@ public class InterfazReserva extends JFrame {
     private JTextField txtFecha;
     private JTextField txtLibro;
 
+    /**
+     * Metodo Constructor de la clase InterfazReserva
+     * Configura la ventana para la realizacion de reservas
+     * @param biblioteca Biblioteca guardada para donde se realizan las reservas
+     */
     public InterfazReserva(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         this.usuario = UsuarioConectado.getUsuario();
@@ -48,7 +55,11 @@ public class InterfazReserva extends JFrame {
         add(btnRealizarPrestamo);
         add(btnVolver);
 
-        // Acción para realizar la reserva
+        /**
+         * Accion asociada al boton de Realizar Prestamo
+         * Si esta todo correctamente agregado realiza el prestamo
+         * En caso de que se realiza correctamente envia un mensaje al usuario indicando esto mismo.
+         */
         btnRealizarPrestamo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,7 +92,10 @@ public class InterfazReserva extends JFrame {
             }
         });
 
-        // Acción para volver a la ventana principal
+        /**
+         * Accion asociada al boton volver
+         * Cierra la ventana y abre la ventana del menu principal
+         */
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -91,6 +105,11 @@ public class InterfazReserva extends JFrame {
             }
         });
     }
+
+    /**
+     * Metodo para obtener un numero aleatorio mediante una operacion matematica
+     * @return Retorna un valor en String que sera unico para cada reserva activa
+     */
 
     public String obtenerIdentificador(){
         Instant instant = Instant.now();
@@ -109,6 +128,12 @@ public class InterfazReserva extends JFrame {
         return String.valueOf(identificacion);
 
     }
+
+    /**
+     * Metodo para establecer la fecha a un formato especifico
+     * @param fecha Fecha establecida en el sistema
+     * @return Retorna la fecha como Date, el cual posee el formato establecido para evitar problemas en el futuro
+     */
 
     public Date formatearFecha(Date fecha){
         Calendar cal = Calendar.getInstance();
