@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "Juan",
+    "identificacion": 1,
+    "prestamos": [],
+    "multas": [],
+    "administrador": false
+  },
+  {
+    "nombre": "Temuco",
+    "identificacion": 2,
+    "prestamos": [],
+    "multas": [],
+    "administrador": false
+  }
+]
